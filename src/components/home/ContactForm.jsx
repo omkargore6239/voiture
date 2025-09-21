@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Send, Phone, Mail, MapPin } from 'lucide-react';
 import { siteData } from '../../data/siteData';
 
@@ -11,6 +11,35 @@ const ContactForm = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [visibleElements, setVisibleElements] = useState(new Set());
+  const observerRef = useRef(null);
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              setVisibleElements(prev => new Set([...prev, entry.target.dataset.animate]));
+            }, 150);
+          }
+        });
+      },
+      { 
+        threshold: 0.1, 
+        rootMargin: '0px 0px -30px 0px' 
+      }
+    );
+
+    const elements = document.querySelectorAll('[data-animate]');
+    elements.forEach(el => observerRef.current.observe(el));
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -38,20 +67,42 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="section-padding bg-gray-50">
+    <section className="section-padding bg-gray-50 overflow-hidden">
       <div className="container-custom">
-        <div className="text-center mb-12">
+        {/* Title - Slide from Left */}
+        <div 
+          className={`text-center mb-12 transition-all duration-[1800ms] ease-out ${
+            visibleElements.has('contact-title') 
+              ? 'opacity-100 translate-x-0' 
+              : 'opacity-0 -translate-x-20'
+          }`}
+          data-animate="contact-title"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Get in <span className="text-gradient">Touch</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p 
+            className={`text-lg text-gray-600 max-w-2xl mx-auto transition-all duration-[1600ms] ease-out ${
+              visibleElements.has('contact-title') 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 translate-x-20'
+            }`}
+            style={{ transitionDelay: '300ms' }}
+          >
             Ready to start your learning journey? Contact us today and let us help you achieve your academic goals.
           </p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="card">
+          {/* Contact Form - Slide from Left */}
+          <div 
+            className={`card transition-all duration-[1800ms] ease-out ${
+              visibleElements.has('form-section') 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 -translate-x-24'
+            }`}
+            data-animate="form-section"
+          >
             <h3 className="text-2xl font-semibold text-gray-800 mb-6">Send us a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -115,7 +166,7 @@ const ContactForm = () => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all"
                   >
                     <option value="">Select a course</option>
-                    {siteData.popularCourses.map((course) => (
+                    {siteData.popularCourses?.map((course) => (
                       <option key={course.id} value={course.name}>
                         {course.name}
                       </option>
@@ -154,12 +205,27 @@ const ContactForm = () => {
             </form>
           </div>
           
-          {/* Contact Information */}
-          <div className="space-y-6">
+          {/* Contact Information - Slide from Right */}
+          <div 
+            className={`space-y-6 transition-all duration-[1800ms] ease-out ${
+              visibleElements.has('info-section') 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 translate-x-24'
+            }`}
+            data-animate="info-section"
+          >
             <div className="card">
               <h3 className="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
               <div className="space-y-4">
-                <div className="flex items-start space-x-4">
+                {/* Address - Slide from Right with delay */}
+                <div 
+                  className={`flex items-start space-x-4 transition-all duration-[1400ms] ease-out ${
+                    visibleElements.has('info-section') 
+                      ? 'opacity-100 translate-x-0' 
+                      : 'opacity-0 translate-x-16'
+                  }`}
+                  style={{ transitionDelay: '200ms' }}
+                >
                   <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <MapPin className="text-primary-600" size={20} />
                   </div>
@@ -169,7 +235,15 @@ const ContactForm = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-start space-x-4">
+                {/* Phone - Slide from Right with more delay */}
+                <div 
+                  className={`flex items-start space-x-4 transition-all duration-[1400ms] ease-out ${
+                    visibleElements.has('info-section') 
+                      ? 'opacity-100 translate-x-0' 
+                      : 'opacity-0 translate-x-16'
+                  }`}
+                  style={{ transitionDelay: '400ms' }}
+                >
                   <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Phone className="text-primary-600" size={20} />
                   </div>
@@ -179,7 +253,15 @@ const ContactForm = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-start space-x-4">
+                {/* Email - Slide from Right with most delay */}
+                <div 
+                  className={`flex items-start space-x-4 transition-all duration-[1400ms] ease-out ${
+                    visibleElements.has('info-section') 
+                      ? 'opacity-100 translate-x-0' 
+                      : 'opacity-0 translate-x-16'
+                  }`}
+                  style={{ transitionDelay: '600ms' }}
+                >
                   <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Mail className="text-primary-600" size={20} />
                   </div>
@@ -191,7 +273,15 @@ const ContactForm = () => {
               </div>
             </div>
             
-            <div className="card bg-gradient-primary text-white">
+            {/* Office Hours - Slide from Right */}
+            <div 
+              className={`card bg-gradient-primary text-white transition-all duration-[1600ms] ease-out ${
+                visibleElements.has('info-section') 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 translate-x-20'
+              }`}
+              style={{ transitionDelay: '300ms' }}
+            >
               <h3 className="text-xl font-semibold mb-4">Office Hours</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">

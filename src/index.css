@@ -5,9 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap'); */
-
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -16,6 +13,19 @@
   body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scrollbar during animations */
+  }
+
+  /* Initial hidden states for animations */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-on-scroll.animate-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -43,6 +53,61 @@
   .container-custom {
     @apply max-w-7xl mx-auto;
   }
+
+  /* Animation classes for different directions */
+  .animate-from-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-from-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-from-bottom {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-from-top {
+    opacity: 0;
+    transform: translateY(-60px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-scale-in {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-rotate-in {
+    opacity: 0;
+    transform: rotate(-5deg) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Visible states */
+  .animate-from-left.animate-visible,
+  .animate-from-right.animate-visible,
+  .animate-from-bottom.animate-visible,
+  .animate-from-top.animate-visible,
+  .animate-scale-in.animate-visible,
+  .animate-rotate-in.animate-visible {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1) rotate(0deg);
+  }
+
+  /* Staggered animation delays */
+  .animate-delay-100 { animation-delay: 0.1s; transition-delay: 0.1s; }
+  .animate-delay-200 { animation-delay: 0.2s; transition-delay: 0.2s; }
+  .animate-delay-300 { animation-delay: 0.3s; transition-delay: 0.3s; }
+  .animate-delay-400 { animation-delay: 0.4s; transition-delay: 0.4s; }
+  .animate-delay-500 { animation-delay: 0.5s; transition-delay: 0.5s; }
 }
 
 @layer utilities {
@@ -53,13 +118,34 @@
   .bg-gradient-primary {
     @apply bg-gradient-to-r from-primary-600 to-secondary-600;
   }
+
+  /* Utility classes for scroll animations */
+  .scroll-fade-up {
+    @apply animate-from-bottom;
+  }
+
+  .scroll-fade-left {
+    @apply animate-from-left;
+  }
+
+  .scroll-fade-right {
+    @apply animate-from-right;
+  }
+
+  .scroll-scale {
+    @apply animate-scale-in;
+  }
+
+  .scroll-rotate {
+    @apply animate-rotate-in;
+  }
 }
 
-/* Custom Animations */
-@keyframes fadeIn {
+/* Enhanced Custom Animations */
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -67,15 +153,84 @@
   }
 }
 
-@keyframes slideIn {
+@keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-60px);
   }
   to {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+/* Animation classes with keyframes */
+.animate-fade-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-bottom {
+  animation: slideInBottom 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale {
+  animation: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-rotate {
+  animation: rotateIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Loading Animation */
@@ -99,7 +254,7 @@
   backdrop-filter: blur(4px);
 }
 
-/* Smooth scrolling for navigation */
+/* Enhanced navigation with smooth scrolling */
 .nav-link {
   @apply relative;
 }
@@ -118,4 +273,137 @@
 .nav-link:hover::after,
 .nav-link.active::after {
   width: 100%;
+}
+
+/* Parallax and advanced effects */
+.parallax-element {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Intersection Observer Animation States */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Media queries for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll,
+  .animate-from-left,
+  .animate-from-right,
+  .animate-from-bottom,
+  .animate-from-top,
+  .animate-scale-in,
+  .animate-rotate-in,
+  .fade-in-section {
+    transition: none;
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Advanced staggered animations */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stagger-children.animate-visible > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-children.animate-visible > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-children.animate-visible > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-children.animate-visible > *:nth-child(4) { transition-delay: 0.4s; }
+.stagger-children.animate-visible > *:nth-child(5) { transition-delay: 0.5s; }
+.stagger-children.animate-visible > *:nth-child(6) { transition-delay: 0.6s; }
+
+.stagger-children.animate-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Text reveal animations */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal .line {
+  display: block;
+  transform: translateY(100%);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.text-reveal.animate-visible .line {
+  transform: translateY(0);
+}
+
+/* Image hover effects */
+.image-hover-effect {
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.image-hover-effect img {
+  transition: transform 0.5s ease;
+}
+
+.image-hover-effect:hover {
+  transform: scale(1.02);
+}
+
+.image-hover-effect:hover img {
+  transform: scale(1.1);
+}
+
+/* Updated CSS - Only Left/Right Scroll Animations */
+@layer utilities {
+  /* Smooth left/right animations only */
+  .slide-from-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .slide-from-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .slide-from-left.animate-visible,
+  .slide-from-right.animate-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Enhanced smooth transitions */
+  .ultra-smooth-left {
+    transition: all 1.8s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  
+  .ultra-smooth-right {
+    transition: all 1.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  /* Remove all floating and bouncing animations */
+  .no-float {
+    animation: none !important;
+  }
+}
+
+/* Simple hover effects without floating */
+.simple-hover {
+  transition: all 0.4s ease;
+}
+
+.simple-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }

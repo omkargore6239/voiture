@@ -403,11 +403,11 @@ export const siteData = {
   ],
 
   // About Us Data
-  about: {
+   about: {
     title: "We Always Ensure Best Course For Your Learning",
-    description: "Voiture Coaching Institute is one of the best IT Training & Staffing Services Providers in Pune, dedicated to introducing new skills and talent into the IT Sector. We are a proudly unique company with services covering all levels of IT recruitment and skill development.",
+    description: "Voiture career institute is one of the best IT Training & Staffing Services Provider in Pune, dedicated to introducing new skills and talent into IT Sector. We are a proudly unique company with services covering all levels of IT recruitment and skill development.",
     mission: "Since 2020, we have helped over 1000 people launch their careers in the Tech and Digital Industries and supported their further development with our blend of training and recruitment services.",
-    vision: "In this expeditious environment, our team has an optimum blend of Experienced Engineers, Business Developers and Human Resourcing Experts with cumulative experience of over 3-4 decades, who are committed to providing high-quality, hands-on learning experiences for aspiring engineers and IT professionals.",
+    vision: "In this expeditious environment, our team has an optimum blend of Experienced Engineers, Business Developers and Human Resourcing Experts with cumulative experience of over 3-4 decades, who are committed to providing high-quality, hands-on learning experiences of aspiring engineers and IT professionals.",
     stats: [
       { number: "1000+", label: "Careers Launched" },
       { number: "3-4", label: "Decades of Experience" },
@@ -416,15 +416,9 @@ export const siteData = {
     ],
     achievements: [
       "Best IT Training Institute in Pune – 2023",
-      "Top Staffing Services Provider – Western India 2022",
+      "Top Staffing Services Provider – Western India 2022", 
       "Excellence in Technical Education Award – 2021",
       "Industry-Recognized Best Practices in Pedagogy – 2020"
-    ],
-    awards: [
-      "Pune Udyog Bhushan Purskar – 2024 (Best IT Training Provider)",
-      "Most Trusted Coaching Brand – Maharashtra 2023",
-      "Best Institute for Industry Connect – Times Education 2022",
-      "Best Career Support Services – Zee Education Awards 2021"
     ],
     additionalSections: [
       {
@@ -432,7 +426,7 @@ export const siteData = {
         content: "Our courses are taught by experienced professionals and industry experts with years of hands-on experience."
       },
       {
-        title: "Industry-Relevant Curriculum",
+        title: "Industry-Relevant Curriculum", 
         content: "Our programs are designed with input from leading industry professionals to ensure that you learn the skills employers demand."
       },
       {

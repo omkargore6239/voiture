@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Phone, 
   Mail, 
@@ -153,7 +153,7 @@ const ContactForm = () => {
             className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all text-sm md:text-base"
           >
             <option value="">Select a course</option>
-            {siteData.allCourses.map((course) => (
+            {siteData.allCourses?.map((course) => (
               <option key={course.id} value={course.name}>
                 {course.name}
               </option>
@@ -211,35 +211,102 @@ const ContactForm = () => {
 };
 
 const Contact = () => {
+  const [visibleElements, setVisibleElements] = useState(new Set());
+  const observerRef = useRef(null);
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              setVisibleElements(prev => new Set([...prev, entry.target.dataset.animate]));
+            }, 150);
+          }
+        });
+      },
+      { 
+        threshold: 0.1, 
+        rootMargin: '0px 0px -30px 0px' 
+      }
+    );
+
+    const elements = document.querySelectorAll('[data-animate]');
+    elements.forEach(el => observerRef.current.observe(el));
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
+
   return (
-    <div>
-      {/* Hero Section */}
+    <div className="overflow-hidden">
+      {/* Hero Section - Title from Left, Description from Right */}
       <section className="py-8 md:py-12 lg:py-16 bg-gradient-primary text-white">
         <div className="container-custom text-center px-4">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
+          <h1 
+            className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 transition-all duration-[1800ms] ease-out ${
+              visibleElements.has('hero-title') 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 -translate-x-20'
+            }`}
+            data-animate="hero-title"
+          >
             Contact Us
           </h1>
-          <p className="text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
+          <p 
+            className={`text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed transition-all duration-[1600ms] ease-out ${
+              visibleElements.has('hero-title') 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 translate-x-20'
+            }`}
+            style={{ transitionDelay: '300ms' }}
+          >
             Get in touch with us for admissions, course information, or any questions. We're here to help you succeed.
           </p>
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Section - Form from Left, Info from Right */}
       <section className="py-8 md:py-12 lg:py-16">
         <div className="container-custom px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
-            {/* Contact Form */}
-            <ContactForm />
+            {/* Contact Form - Slide from Left */}
+            <div 
+              className={`transition-all duration-[1800ms] ease-out ${
+                visibleElements.has('contact-form') 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 -translate-x-24'
+              }`}
+              data-animate="contact-form"
+            >
+              <ContactForm />
+            </div>
             
-            {/* Contact Information */}
-            <div className="space-y-4 md:space-y-6">
+            {/* Contact Information - Slide from Right */}
+            <div 
+              className={`space-y-4 md:space-y-6 transition-all duration-[1800ms] ease-out ${
+                visibleElements.has('contact-info') 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 translate-x-24'
+              }`}
+              data-animate="contact-info"
+            >
               {/* Branch Locations */}
               <div className="bg-white p-4 md:p-6 lg:p-8 rounded-lg md:rounded-xl shadow-lg">
                 <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4 md:mb-6">Our Branches</h3>
                 
-                {/* Ravet Branch */}
-                <div className="mb-6 p-4 bg-gradient-to-r from-primary-50 to-secondary-50 rounded-lg border-l-4 border-primary-600">
+                {/* Ravet Branch - Slide from Right with delay */}
+                <div 
+                  className={`mb-6 p-4 bg-gradient-to-r from-primary-50 to-secondary-50 rounded-lg border-l-4 border-primary-600 transition-all duration-[1400ms] ease-out ${
+                    visibleElements.has('contact-info') 
+                      ? 'opacity-100 translate-x-0' 
+                      : 'opacity-0 translate-x-16'
+                  }`}
+                  style={{ transitionDelay: '300ms' }}
+                >
                   <div className="flex items-center mb-3">
                     <Building2 className="text-primary-600 mr-2" size={20} />
                     <h4 className="font-bold text-gray-800 text-lg">Ravet Branch</h4>
@@ -259,8 +326,15 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Moshi Branch */}
-                <div className="p-4 bg-gradient-to-r from-secondary-50 to-primary-50 rounded-lg border-l-4 border-secondary-600">
+                {/* Moshi Branch - Slide from Right with more delay */}
+                <div 
+                  className={`p-4 bg-gradient-to-r from-secondary-50 to-primary-50 rounded-lg border-l-4 border-secondary-600 transition-all duration-[1400ms] ease-out ${
+                    visibleElements.has('contact-info') 
+                      ? 'opacity-100 translate-x-0' 
+                      : 'opacity-0 translate-x-16'
+                  }`}
+                  style={{ transitionDelay: '500ms' }}
+                >
                   <div className="flex items-center mb-3">
                     <Building2 className="text-secondary-600 mr-2" size={20} />
                     <h4 className="font-bold text-gray-800 text-lg">Moshi Branch</h4>
@@ -280,8 +354,15 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Email Contact */}
-                <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                {/* Email Contact - Slide from Right with most delay */}
+                <div 
+                  className={`mt-4 p-3 bg-gray-50 rounded-lg transition-all duration-[1400ms] ease-out ${
+                    visibleElements.has('contact-info') 
+                      ? 'opacity-100 translate-x-0' 
+                      : 'opacity-0 translate-x-16'
+                  }`}
+                  style={{ transitionDelay: '700ms' }}
+                >
                   <div className="flex items-center space-x-3">
                     <Mail className="text-primary-600 flex-shrink-0" size={18} />
                     <div>
@@ -293,8 +374,15 @@ const Contact = () => {
                 </div>
               </div>
               
-              {/* Office Hours */}
-              <div className="bg-gradient-primary text-white p-4 md:p-6 lg:p-8 rounded-lg md:rounded-xl">
+              {/* Office Hours - Slide from Right */}
+              <div 
+                className={`bg-gradient-primary text-white p-4 md:p-6 lg:p-8 rounded-lg md:rounded-xl transition-all duration-[1600ms] ease-out ${
+                  visibleElements.has('contact-info') 
+                    ? 'opacity-100 translate-x-0' 
+                    : 'opacity-0 translate-x-20'
+                }`}
+                style={{ transitionDelay: '400ms' }}
+              >
                 <div className="flex items-center mb-3 md:mb-4">
                   <Clock className="mr-2 md:mr-3" size={20} />
                   <h3 className="text-lg md:text-xl font-semibold">Office Hours (Both Branches)</h3>
@@ -325,17 +413,41 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Branch Quick Contact Cards */}
+      {/* Branch Quick Contact Cards - Alternating Left/Right */}
       <section className="py-8 md:py-12 lg:py-16 bg-gray-50">
         <div className="container-custom px-4">
-          <div className="text-center mb-6 md:mb-8">
+          <div 
+            className={`text-center mb-6 md:mb-8 transition-all duration-[1600ms] ease-out ${
+              visibleElements.has('branch-title') 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 -translate-x-16'
+            }`}
+            data-animate="branch-title"
+          >
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Choose Your Nearest Branch</h2>
-            <p className="text-gray-600">Visit us at any of our two convenient locations</p>
+            <p 
+              className={`text-gray-600 transition-all duration-[1400ms] ease-out ${
+                visibleElements.has('branch-title') 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 translate-x-16'
+              }`}
+              style={{ transitionDelay: '200ms' }}
+            >
+              Visit us at any of our two convenient locations
+            </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 max-w-4xl mx-auto">
-            {/* Ravet Branch Card */}
-            <div className="bg-white p-4 md:p-6 text-center hover:scale-105 transition-all duration-300 flex flex-col justify-between rounded-lg shadow-lg border-t-4 border-primary-600">
+            {/* Ravet Branch Card - Slide from Left */}
+            <div 
+              className={`bg-white p-4 md:p-6 text-center hover:scale-105 transition-all duration-[1600ms] ease-out flex flex-col justify-between rounded-lg shadow-lg border-t-4 border-primary-600 ${
+                visibleElements.has('branch-cards') 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 -translate-x-20'
+              }`}
+              data-animate="branch-cards"
+              style={{ transitionDelay: '200ms' }}
+            >
               <div>
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
                   <Building2 className="text-white" size={20} />
@@ -360,8 +472,16 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Moshi Branch Card */}
-            <div className="bg-white p-4 md:p-6 text-center hover:scale-105 transition-all duration-300 flex flex-col justify-between rounded-lg shadow-lg border-t-4 border-secondary-600">
+            {/* Moshi Branch Card - Slide from Right */}
+            <div 
+              className={`bg-white p-4 md:p-6 text-center hover:scale-105 transition-all duration-[1600ms] ease-out flex flex-col justify-between rounded-lg shadow-lg border-t-4 border-secondary-600 ${
+                visibleElements.has('branch-cards') 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 translate-x-20'
+              }`}
+              data-animate="branch-cards"
+              style={{ transitionDelay: '400ms' }}
+            >
               <div>
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-secondary-600 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
                   <Building2 className="text-white" size={20} />
@@ -387,9 +507,17 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Common Email Card */}
+          {/* Common Email Card - Slide from Bottom Center */}
           <div className="max-w-md mx-auto mt-6 md:mt-8">
-            <div className="bg-white p-4 md:p-6 text-center hover:scale-105 transition-all duration-300 rounded-lg shadow-lg">
+            <div 
+              className={`bg-white p-4 md:p-6 text-center hover:scale-105 transition-all duration-[1600ms] ease-out rounded-lg shadow-lg ${
+                visibleElements.has('email-card') 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 translate-y-12'
+              }`}
+              data-animate="email-card"
+              style={{ transitionDelay: '600ms' }}
+            >
               <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
                 <Mail className="text-white" size={20} />
               </div>
