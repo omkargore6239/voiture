@@ -222,14 +222,7 @@ const Footer = () => {
             <p className="text-gray-300 text-sm">
               © {currentYear} {siteData.siteName}. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-gray-300 hover:text-primary-400 text-sm">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="text-gray-300 hover:text-primary-400 text-sm">
-                Terms of Service
-              </Link>
-            </div>
+           
           </div>
         </div>
       </div>
