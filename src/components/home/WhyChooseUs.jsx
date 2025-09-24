@@ -1,11 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { 
-  GraduationCap, 
-  Target, 
-  BookOpen, 
-  Users, 
-  Clock, 
-  Award 
+  CheckCircle 
 } from 'lucide-react';
 import { siteData } from '../../data/siteData';
 
@@ -40,100 +35,71 @@ const WhyChooseUs = () => {
     };
   }, []);
 
-  const iconMap = {
-    GraduationCap: GraduationCap,
-    Target: Target,
-    BookOpen: BookOpen,
-    Users: Users,
-    Clock: Clock,
-    Award: Award
-  };
-
   return (
     <section className="section-padding bg-gray-50 overflow-hidden">
-      <div className="container-custom">
-        {/* Header Section - Title from Left, Description from Right */}
-        <div 
-          className="text-center mb-12"
-          data-animate="header"
-        >
-          <h2 
-            className={`text-3xl md:text-4xl font-bold text-gray-800 mb-4 transition-all duration-[1800ms] ease-out ${
-              visibleElements.has('header') 
-                ? 'opacity-100 translate-x-0' 
-                : 'opacity-0 -translate-x-20'
-            }`}
-          >
-            Why Choose <span className="text-gradient">Voiture Coaching</span>
-          </h2>
-          <p 
-            className={`text-lg text-gray-600 max-w-2xl mx-auto transition-all duration-[1600ms] ease-out ${
-              visibleElements.has('header') 
-                ? 'opacity-100 translate-x-0' 
-                : 'opacity-0 translate-x-20'
-            }`}
-            style={{ transitionDelay: '300ms' }}
-          >
-            Discover what makes us different and why thousands of students trust us with their educational journey.
-          </p>
+      <div className="container-custom flex flex-col md:flex-row md:gap-12 md:items-center">
+        {/* Left Image */}
+        <div className="md:w-1/2 mb-12 md:mb-0" data-animate="image">
+          <img
+            src="/whychooseus.jpg"
+            alt="Why Choose Us Illustration"
+            className="w-full h-auto rounded-lg shadow-xl"
+          />
         </div>
-        
-        {/* Features Grid - Alternating Left/Right Animation */}
-        <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          data-animate="features"
-        >
-          {siteData.whyChooseUs.map((item, index) => {
-            const IconComponent = iconMap[item.icon];
-            
-            return (
+
+        {/* Right Content */}
+        <div className="md:w-1/2" data-animate="content">
+          <div className="mb-8 text-center md:text-left">
+            <span className="inline-block bg-gray-200 rounded-full px-4 py-1 text-sm font-semibold text-red-400 mb-3">
+              WHY CHOOSE US
+            </span>
+            <h2 
+              className={`text-3xl md:text-4xl font-bold text-gray-800 mb-4 transition-all duration-[1800ms] ease-out ${
+                visibleElements.has('content') 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 translate-x-10'
+              }`}
+              data-animate="header-title"
+            >
+              Our courses will help you to achieve success
+            </h2>
+            <p
+              className={`text-gray-600 text-base md:text-lg max-w-xl transition-all duration-[1600ms] ease-out ${
+                visibleElements.has('content') 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 translate-x-10'
+              }`}
+              style={{ transitionDelay: '300ms' }}
+              data-animate="header-desc"
+            >
+             Voiture Coaching Institute enhances individual and team performance, ensures training ROI, evaluates competencies, and addresses attrition, contributing to organizational success and asset retention. Join us for your better future development.
+            </p>
+          </div>
+
+          <div 
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+            data-animate="features"
+          >
+            {siteData.whyChooseUs.map((item, index) => (
               <div
                 key={item.id}
-                className={`card text-center hover:scale-105 transition-all duration-[1800ms] ease-out ${
+                className={`bg-gray-200 rounded-lg p-6 flex gap-4 items-start transition-all duration-[1800ms] ease-out ${
                   visibleElements.has('features') 
                     ? 'opacity-100 translate-x-0' 
-                    : `opacity-0 ${index % 2 === 0 ? '-translate-x-24' : 'translate-x-24'}`
+                    : `opacity-0 translate-x-${index % 2 === 0 ? '-6' : '6'}`
                 }`}
-                style={{ transitionDelay: `${200 + index * 200}ms` }}
+                style={{ transitionDelay: `${200 + index * 150}ms` }}
               >
-                {/* Icon Container */}
-                <div 
-                  className={`w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-[1400ms] ease-out ${
-                    visibleElements.has('features') 
-                      ? 'opacity-100 scale-100' 
-                      : 'opacity-0 scale-75'
-                  }`}
-                  style={{ transitionDelay: `${400 + index * 200}ms` }}
-                >
-                  <IconComponent className="text-white" size={28} />
+                <div className="flex-shrink-0 text-red-400 mt-1">
+                  <CheckCircle size={28} />
                 </div>
-                
-                {/* Title */}
-                <h3 
-                  className={`text-xl font-semibold text-gray-800 mb-3 transition-all duration-[1200ms] ease-out ${
-                    visibleElements.has('features') 
-                      ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 translate-y-4'
-                  }`}
-                  style={{ transitionDelay: `${500 + index * 200}ms` }}
-                >
-                  {item.title}
-                </h3>
-                
-                {/* Description */}
-                <p 
-                  className={`text-gray-600 leading-relaxed transition-all duration-[1200ms] ease-out ${
-                    visibleElements.has('features') 
-                      ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 translate-y-4'
-                  }`}
-                  style={{ transitionDelay: `${600 + index * 200}ms` }}
-                >
-                  {item.description}
-                </p>
+                <div>
+                  <h3 className="font-semibold text-gray-800 mb-2">{item.title}</h3>
+                  <p className="text-gray-700 text-sm">{item.description}</p>
+                </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,20 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, Users, Star } from 'lucide-react';
 import { siteData } from '../../data/siteData';
 
 const CourseCard = ({ course, index, isVisible }) => {
-  // Determine animation direction based on position
+  // Simplified animation direction based on position
   const getAnimationDirection = (index) => {
-    const row = Math.floor(index / 3); // Assuming 3 columns in lg screens
-    const col = index % 3;
+    const row = Math.floor(index / 4); // Assuming 4 columns in lg screens now
+    const col = index % 4;
     
-    // First row: left, center (up), right
-    // Second row: right, center (up), left
+    // Alternating animation directions for variety
     if (row % 2 === 0) {
-      return col === 0 ? 'left' : col === 1 ? 'up' : 'right';
+      return col === 0 ? 'left' : col === 1 ? 'up' : col === 2 ? 'right' : 'left';
     } else {
-      return col === 0 ? 'right' : col === 1 ? 'up' : 'left';
+      return col === 0 ? 'right' : col === 1 ? 'up' : col === 2 ? 'left' : 'right';
     }
   };
 
@@ -25,162 +23,88 @@ const CourseCard = ({ course, index, isVisible }) => {
     
     switch (direction) {
       case 'left':
-        return 'opacity-0 -translate-x-24';
+        return 'opacity-0 -translate-x-16';
       case 'right':
-        return 'opacity-0 translate-x-24';
+        return 'opacity-0 translate-x-16';
       case 'up':
-        return 'opacity-0 translate-y-16';
+        return 'opacity-0 translate-y-12';
       default:
-        return 'opacity-0 translate-y-16';
+        return 'opacity-0 translate-y-12';
     }
   };
 
   return (
-    <div 
-      className={`card group hover:scale-105 transition-all duration-[1800ms] ease-out ${getTransformClass(direction, isVisible)}`}
-      style={{ transitionDelay: `${300 + index * 250}ms` }}
+    <Link
+      to="/courses"
+      className={`block bg-white rounded-xl shadow-lg hover:shadow-xl group hover:scale-105 transition-all duration-1000 ease-out cursor-pointer ${getTransformClass(direction, isVisible)}`}
+      style={{ transitionDelay: `${200 + index * 150}ms` }}
     >
-      {/* Card Image with Staggered Animation */}
-      <div className="relative overflow-hidden rounded-lg mb-4">
+      {/* Card Image */}
+      <div className="relative overflow-hidden rounded-t-xl">
         <img
           src={course.image}
           alt={course.name}
-          className={`w-full h-48 object-cover group-hover:scale-110 transition-all duration-[1200ms] ease-out ${
+          className={`w-full h-48 object-cover group-hover:scale-110 transition-all duration-700 ease-out ${
             isVisible 
               ? 'scale-100 opacity-100' 
               : 'scale-110 opacity-0'
           }`}
-          style={{ transitionDelay: `${400 + index * 250}ms` }}
+          style={{ transitionDelay: `${300 + index * 150}ms` }}
           onError={(e) => {
+            // Fallback image if original fails to load
             e.target.src = `https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80`;
           }}
         />
         
-        {/* Price Badge */}
-        <div 
-          className={`absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-semibold transition-all duration-[1000ms] ease-out ${
-            isVisible 
-              ? 'opacity-100 scale-100 rotate-0' 
-              : 'opacity-0 scale-75 rotate-12'
-          }`}
-          style={{ transitionDelay: `${600 + index * 250}ms` }}
-        >
-          {course.price}
+        {/* Gradient overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        
+        {/* Hover indicator */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="bg-white/90 rounded-full p-3 transform scale-75 group-hover:scale-100 transition-transform duration-300">
+            <svg 
+              className="w-6 h-6 text-primary-600" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M9 5l7 7-7 7" 
+              />
+            </svg>
+          </div>
         </div>
       </div>
       
-      {/* Course Content with Sequential Animation */}
-      <div className="space-y-4">
-        {/* Title */}
+      {/* Course Name */}
+      <div className="p-6">
         <h3 
-          className={`text-xl font-bold text-gray-800 transition-all duration-[1200ms] ease-out ${
+          className={`text-xl font-bold text-gray-800 text-center transition-all duration-800 ease-out group-hover:text-primary-600 ${
             isVisible 
               ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-6'
+              : 'opacity-0 translate-y-4'
           }`}
-          style={{ transitionDelay: `${500 + index * 250}ms` }}
+          style={{ transitionDelay: `${400 + index * 150}ms` }}
         >
           {course.name}
         </h3>
         
-        {/* Description */}
+        {/* Click indicator text */}
         <p 
-          className={`text-gray-600 line-clamp-2 transition-all duration-[1200ms] ease-out ${
+          className={`text-sm text-gray-500 text-center mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300 ${
             isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-6'
+              ? 'translate-y-0' 
+              : 'translate-y-2'
           }`}
-          style={{ transitionDelay: `${600 + index * 250}ms` }}
+          style={{ transitionDelay: `${500 + index * 150}ms` }}
         >
-          {course.description}
+          Click to explore courses
         </p>
-        
-        {/* Course Meta Info */}
-        <div 
-          className={`flex items-center justify-between text-sm text-gray-500 transition-all duration-[1200ms] ease-out ${
-            isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-6'
-          }`}
-          style={{ transitionDelay: `${700 + index * 250}ms` }}
-        >
-          <div className="flex items-center">
-            <Clock size={16} className="mr-1" />
-            <span>{course.duration}</span>
-          </div>
-          <div className="flex items-center">
-            <Users size={16} className="mr-1" />
-            <span>{course.students} students</span>
-          </div>
-        </div>
-        
-        {/* Features Tags */}
-        <div 
-          className={`flex flex-wrap gap-2 transition-all duration-[1200ms] ease-out ${
-            isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-6'
-          }`}
-          style={{ transitionDelay: `${800 + index * 250}ms` }}
-        >
-          {course.features.slice(0, 2).map((feature, featureIndex) => (
-            <span
-              key={featureIndex}
-              className={`px-3 py-1 bg-primary-100 text-primary-600 text-sm rounded-full transition-all duration-[800ms] ease-out ${
-                isVisible 
-                  ? 'opacity-100 scale-100' 
-                  : 'opacity-0 scale-90'
-              }`}
-              style={{ transitionDelay: `${850 + index * 250 + featureIndex * 100}ms` }}
-            >
-              {feature}
-            </span>
-          ))}
-        </div>
-        
-        {/* Rating and Button */}
-        <div 
-          className={`flex items-center justify-between transition-all duration-[1200ms] ease-out ${
-            isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-6'
-          }`}
-          style={{ transitionDelay: `${900 + index * 250}ms` }}
-        >
-          {/* Star Rating */}
-          <div className="flex items-center">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  size={16}
-                  className={`text-yellow-400 fill-current transition-all duration-[600ms] ease-out ${
-                    isVisible 
-                      ? 'opacity-100 scale-100' 
-                      : 'opacity-0 scale-75'
-                  }`}
-                  style={{ transitionDelay: `${950 + index * 250 + i * 50}ms` }}
-                />
-              ))}
-            </div>
-            <span className="ml-2 text-sm text-gray-600">(4.8)</span>
-          </div>
-          
-          {/* Learn More Button */}
-          <Link
-            to="/courses"
-            className={`btn-primary text-sm px-4 py-2 transition-all duration-[800ms] ease-out hover:scale-105 ${
-              isVisible 
-                ? 'opacity-100 scale-100' 
-                : 'opacity-0 scale-90'
-            }`}
-            style={{ transitionDelay: `${1000 + index * 250}ms` }}
-          >
-            Learn More
-          </Link>
-        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -215,6 +139,9 @@ const PopularCourses = () => {
     };
   }, []);
 
+  // Display up to 4 courses (add one more from existing courses)
+  const coursesToDisplay = siteData.popularCourses.slice(0, 4);
+
   return (
     <section className="section-padding bg-gray-50 overflow-hidden">
       <div className="container-custom">
@@ -224,7 +151,7 @@ const PopularCourses = () => {
           data-animate="header"
         >
           <h2 
-            className={`text-3xl md:text-4xl font-bold text-gray-800 mb-4 transition-all duration-[1800ms] ease-out ${
+            className={`text-3xl md:text-4xl font-bold text-gray-800 mb-4 transition-all duration-1200 ease-out ${
               visibleElements.has('header') 
                 ? 'opacity-100 translate-x-0' 
                 : 'opacity-0 -translate-x-20'
@@ -233,23 +160,23 @@ const PopularCourses = () => {
             Our Popular <span className="text-gradient">Courses</span>
           </h2>
           <p 
-            className={`text-lg text-gray-600 max-w-2xl mx-auto transition-all duration-[1600ms] ease-out ${
+            className={`text-lg text-gray-600 max-w-2xl mx-auto transition-all duration-1000 ease-out ${
               visibleElements.has('header') 
                 ? 'opacity-100 translate-x-0' 
                 : 'opacity-0 translate-x-20'
             }`}
-            style={{ transitionDelay: '300ms' }}
+            style={{ transitionDelay: '200ms' }}
           >
-            Discover our most sought-after courses designed to help you achieve your academic goals with expert guidance and comprehensive study materials.
+            Discover our most sought-after courses designed to help you achieve your academic goals.
           </p>
         </div>
         
-        {/* Courses Grid */}
+        {/* Courses Grid - Now with 4 columns and clickable cards */}
         <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
           data-animate="courses"
         >
-          {siteData.popularCourses.map((course, index) => (
+          {coursesToDisplay.map((course, index) => (
             <CourseCard 
               key={course.id} 
               course={course} 
@@ -261,7 +188,7 @@ const PopularCourses = () => {
         
         {/* View All Button */}
         <div 
-          className={`text-center transition-all duration-[1600ms] ease-out ${
+          className={`text-center transition-all duration-1000 ease-out ${
             visibleElements.has('button') 
               ? 'opacity-100 translate-y-0 scale-100' 
               : 'opacity-0 translate-y-8 scale-95'
@@ -270,7 +197,7 @@ const PopularCourses = () => {
         >
           <Link 
             to="/courses" 
-            className="btn-outline hover:scale-105 transition-all duration-300"
+            className="btn-outline hover:scale-105 transition-all duration-300 inline-block px-8 py-3 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-600 hover:text-white"
           >
             View All Courses
           </Link>

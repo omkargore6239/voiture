@@ -3,8 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { Clock, Users, Star, BookOpen, Award, CheckCircle, Briefcase, FileText } from 'lucide-react';
 import { siteData } from '../data/siteData';
 
-const CourseCard = ({ course, index, isVisible }) => {
+const CourseCard = ({ course, index }) => {
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Animate course cards on mount with staggered delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100 + index * 150); // Staggered animation
+
+    return () => clearTimeout(timer);
+  }, [index]);
 
   // Safeguard against missing data
   const {
@@ -35,12 +45,11 @@ const CourseCard = ({ course, index, isVisible }) => {
 
   return (
     <div 
-      className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-[1800ms] ease-out overflow-hidden group ${
+      className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-[800ms] ease-out overflow-hidden group ${
         isVisible 
           ? 'opacity-100 translate-x-0 scale-100' 
           : `opacity-0 ${direction === 'left' ? '-translate-x-24' : 'translate-x-24'} scale-95`
       }`}
-      style={{ transitionDelay: `${300 + index * 200}ms` }}
     >
       {/* Course Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
@@ -49,12 +58,12 @@ const CourseCard = ({ course, index, isVisible }) => {
         <div className="space-y-4 p-6">
           {/* Course Image */}
           <div 
-            className={`relative overflow-hidden rounded-xl transition-all duration-[1200ms] ease-out ${
+            className={`relative overflow-hidden rounded-xl transition-all duration-[500ms] ease-out ${
               isVisible 
                 ? 'scale-100 opacity-100' 
                 : 'scale-110 opacity-0'
             }`}
-            style={{ transitionDelay: `${400 + index * 200}ms` }}
+            style={{ transitionDelay: '200ms' }}
           >
             <img
               src={image}
@@ -68,12 +77,12 @@ const CourseCard = ({ course, index, isVisible }) => {
 
           {/* Course Title and Rating */}
           <div 
-            className={`space-y-3 transition-all duration-[1200ms] ease-out ${
+            className={`space-y-3 transition-all duration-[500ms] ease-out ${
               isVisible 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-4'
             }`}
-            style={{ transitionDelay: `${500 + index * 200}ms` }}
+            style={{ transitionDelay: '300ms' }}
           >
             <h3 className="text-xl font-bold text-gray-800 leading-tight">{name} -</h3>
             
@@ -84,12 +93,12 @@ const CourseCard = ({ course, index, isVisible }) => {
                   <Star
                     key={i}
                     size={16}
-                    className={`text-yellow-400 fill-current transition-all duration-[600ms] ease-out ${
+                    className={`text-yellow-400 fill-current transition-all duration-[300ms] ease-out ${
                       isVisible 
                         ? 'opacity-100 scale-100' 
                         : 'opacity-0 scale-75'
                     }`}
-                    style={{ transitionDelay: `${700 + index * 200 + i * 50}ms` }}
+                    style={{ transitionDelay: `${400 + i * 50}ms` }}
                   />
                 ))}
               </div>
@@ -99,12 +108,12 @@ const CourseCard = ({ course, index, isVisible }) => {
 
           {/* Course Meta Info */}
           <div 
-            className={`flex flex-col gap-3 text-sm transition-all duration-[1200ms] ease-out ${
+            className={`flex flex-col gap-3 text-sm transition-all duration-[500ms] ease-out ${
               isVisible 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-4'
             }`}
-            style={{ transitionDelay: `${700 + index * 200}ms` }}
+            style={{ transitionDelay: '500ms' }}
           >
             <div className="flex items-center gap-2 text-primary-600">
               <Clock className="w-4 h-4" />
@@ -123,12 +132,12 @@ const CourseCard = ({ course, index, isVisible }) => {
 
         {/* Right Side - Course Highlights */}
         <div 
-          className={`bg-gray-50 p-6 space-y-6 transition-all duration-[1200ms] ease-out ${
+          className={`bg-gray-50 p-6 space-y-6 transition-all duration-[500ms] ease-out ${
             isVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-4'
           }`}
-          style={{ transitionDelay: `${800 + index * 200}ms` }}
+          style={{ transitionDelay: '400ms' }}
         >
           {/* Course Highlights Header */}
           <h4 className="text-lg font-bold text-gray-800">
@@ -140,12 +149,12 @@ const CourseCard = ({ course, index, isVisible }) => {
             {(courseHighlights && courseHighlights.length > 0 ? courseHighlights : features).map((highlight, hlIndex) => (
               <div 
                 key={hlIndex}
-                className={`flex items-start gap-3 transition-all duration-[800ms] ease-out ${
+                className={`flex items-start gap-3 transition-all duration-[400ms] ease-out ${
                   isVisible 
                     ? 'opacity-100 translate-x-0' 
                     : 'opacity-0 -translate-x-2'
                 }`}
-                style={{ transitionDelay: `${900 + index * 200 + hlIndex * 30}ms` }}
+                style={{ transitionDelay: `${600 + hlIndex * 30}ms` }}
               >
                 {/* Star Icon matching the image */}
                 <div className="w-4 h-4 flex-shrink-0 mt-0.5">
@@ -176,7 +185,7 @@ const Courses = () => {
           if (entry.isIntersecting) {
             setTimeout(() => {
               setVisibleElements(prev => new Set([...prev, entry.target.dataset.animate]));
-            }, 150);
+            }, 100);
           }
         });
       },
@@ -196,8 +205,8 @@ const Courses = () => {
     };
   }, []);
 
-  // Get all courses from siteData
-  const allCourses = siteData?.allCourses || [];
+  // Get all courses from siteData with fallback to popularCourses
+  const allCourses = siteData?.allCourses || siteData?.popularCourses || [];
   
   // Get unique categories from courses
   const categories = ['All', ...new Set(allCourses.map(course => course.category).filter(Boolean))];
@@ -211,14 +220,14 @@ const Courses = () => {
 
   return (
     <div className="overflow-hidden">
-      {/* Hero Section - Original Colors */}
+      {/* Hero Section */}
       <section className="py-8 md:py-12 lg:py-16 bg-gradient-primary text-white">
         <div 
           className="container-custom text-center px-4"
           data-animate="hero"
         >
           <h1 
-            className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 transition-all duration-[1800ms] ease-out ${
+            className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 transition-all duration-[800ms] ease-out ${
               visibleElements.has('hero') 
                 ? 'opacity-100 translate-x-0' 
                 : 'opacity-0 -translate-x-20'
@@ -227,12 +236,12 @@ const Courses = () => {
             Our Professional Courses
           </h1>
           <p 
-            className={`text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed transition-all duration-[1600ms] ease-out ${
+            className={`text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed transition-all duration-[700ms] ease-out ${
               visibleElements.has('hero') 
                 ? 'opacity-100 translate-x-0' 
                 : 'opacity-0 translate-x-20'
             }`}
-            style={{ transitionDelay: '300ms' }}
+            style={{ transitionDelay: '200ms' }}
           >
             Explore our comprehensive range of courses designed to help you excel in your academic journey and achieve your career goals.
           </p>
@@ -248,7 +257,7 @@ const Courses = () => {
           >
             {/* Search Bar */}
             <div 
-              className={`w-full max-w-md mx-auto md:mx-0 transition-all duration-[1600ms] ease-out ${
+              className={`w-full max-w-md mx-auto md:mx-0 transition-all duration-[600ms] ease-out ${
                 visibleElements.has('filters') 
                   ? 'opacity-100 translate-x-0' 
                   : 'opacity-0 -translate-x-16'
@@ -263,14 +272,14 @@ const Courses = () => {
               />
             </div>
 
-            {/* Category Filters - Original Colors */}
+            {/* Category Filters */}
             <div 
-              className={`flex flex-wrap gap-2 items-center justify-center md:justify-start transition-all duration-[1600ms] ease-out ${
+              className={`flex flex-wrap gap-2 items-center justify-center md:justify-start transition-all duration-[600ms] ease-out ${
                 visibleElements.has('filters') 
                   ? 'opacity-100 translate-x-0' 
                   : 'opacity-0 translate-x-16'
               }`}
-              style={{ transitionDelay: '200ms' }}
+              style={{ transitionDelay: '100ms' }}
             >
               {categories.map((category, index) => (
                 <button
@@ -285,7 +294,7 @@ const Courses = () => {
                       ? 'opacity-100 scale-100' 
                       : 'opacity-0 scale-90'
                   }`}
-                  style={{ transitionDelay: `${400 + index * 100}ms` }}
+                  style={{ transitionDelay: `${200 + index * 50}ms` }}
                 >
                   {category}
                 </button>
@@ -295,7 +304,7 @@ const Courses = () => {
 
           {/* Results Count */}
           <div 
-            className={`mb-6 md:mb-8 transition-all duration-[1400ms] ease-out ${
+            className={`mb-6 md:mb-8 transition-all duration-[600ms] ease-out ${
               visibleElements.has('results') 
                 ? 'opacity-100 translate-x-0' 
                 : 'opacity-0 -translate-x-12'
@@ -309,24 +318,20 @@ const Courses = () => {
             </p>
           </div>
 
-          {/* Courses Grid */}
+          {/* Courses Grid - No intersection observer dependency */}
           {filteredCourses.length ? (
-            <div 
-              className="space-y-8"
-              data-animate="courses"
-            >
+            <div className="space-y-8">
               {filteredCourses.map((course, index) => (
                 <CourseCard 
                   key={course.id || index} 
                   course={course} 
                   index={index}
-                  isVisible={visibleElements.has('courses')}
                 />
               ))}
             </div>
           ) : (
             <div 
-              className={`text-center py-8 md:py-12 transition-all duration-[1600ms] ease-out ${
+              className={`text-center py-8 md:py-12 transition-all duration-[700ms] ease-out ${
                 visibleElements.has('no-results') 
                   ? 'opacity-100 translate-y-0 scale-100' 
                   : 'opacity-0 translate-y-8 scale-95'
@@ -338,98 +343,6 @@ const Courses = () => {
               <p className="text-gray-500 text-sm md:text-base">Try adjusting your search or filter criteria.</p>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Why Choose Us Section - Original Colors */}
-      <section className="py-8 md:py-12 lg:py-16">
-        <div className="container-custom px-4">
-          <div 
-            className="text-center mb-8 md:mb-12"
-            data-animate="why-header"
-          >
-            <h2 
-              className={`text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4 transition-all duration-[1800ms] ease-out ${
-                visibleElements.has('why-header') 
-                  ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 -translate-x-20'
-              }`}
-            >
-              Why Choose Our <span className="text-gradient">Courses</span>
-            </h2>
-            <p 
-              className={`text-base md:text-lg text-gray-600 max-w-2xl mx-auto transition-all duration-[1600ms] ease-out ${
-                visibleElements.has('why-header') 
-                  ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 translate-x-20'
-              }`}
-              style={{ transitionDelay: '300ms' }}
-            >
-              Our courses are designed with industry best practices and delivered by expert faculty to ensure your success.
-            </p>
-          </div>
-          
-          {/* WhyChooseUs data from siteData */}
-          <div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8"
-            data-animate="why-features"
-          >
-            {(siteData?.whyChooseUs || []).slice(0, 6).map((feature, index) => {
-              // Icon mapping for whyChooseUs
-              const iconMap = {
-                GraduationCap: Award,
-                Target: Award,
-                BookOpen: BookOpen,
-                Users: Users,
-                Clock: Clock,
-                Award: Award
-              };
-              const IconComponent = iconMap[feature.icon] || Award;
-              
-              return (
-                <div 
-                  key={feature.id || index}
-                  className={`text-center bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-[1800ms] ease-out ${
-                    visibleElements.has('why-features') 
-                      ? 'opacity-100 translate-x-0 scale-100' 
-                      : `opacity-0 ${index % 2 === 0 ? '-translate-x-20' : 'translate-x-20'} scale-95`
-                  }`}
-                  style={{ transitionDelay: `${200 + index * 200}ms` }}
-                >
-                  <div 
-                    className={`w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-[1400ms] ease-out ${
-                      visibleElements.has('why-features') 
-                        ? 'opacity-100 scale-100 rotate-0' 
-                        : 'opacity-0 scale-75 rotate-180'
-                    }`}
-                    style={{ transitionDelay: `${400 + index * 200}ms` }}
-                  >
-                    <IconComponent className="text-white" size={24} />
-                  </div>
-                  <h3 
-                    className={`text-lg font-semibold text-gray-800 mb-2 transition-all duration-[1200ms] ease-out ${
-                      visibleElements.has('why-features') 
-                        ? 'opacity-100 translate-y-0' 
-                        : 'opacity-0 translate-y-4'
-                    }`}
-                    style={{ transitionDelay: `${500 + index * 200}ms` }}
-                  >
-                    {feature.title}
-                  </h3>
-                  <p 
-                    className={`text-gray-600 transition-all duration-[1200ms] ease-out ${
-                      visibleElements.has('why-features') 
-                        ? 'opacity-100 translate-y-0' 
-                        : 'opacity-0 translate-y-4'
-                    }`}
-                    style={{ transitionDelay: `${600 + index * 200}ms` }}
-                  >
-                    {feature.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
         </div>
       </section>
     </div>

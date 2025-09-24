@@ -24,24 +24,23 @@ export const siteData = {
   heroSlides: [
     {
       id: 1,
-      image: "/images/hero/hero1.jpg",
-      title: "Transform Your Future with Quality Education",
-      subtitle: "Join thousands of successful students who achieved their dreams with Voiture Coaching Institute",
-      cta: "Get Started Today"
+      image: "/images/hero/slider 101.jpg",
+      
     },
     {
       id: 2,
-      image: "/images/hero/hero2.jpg",
-      title: "Expert Faculty, Proven Results",
-      subtitle: "Learn from industry experts and experienced teachers who are committed to your success",
-      cta: "Explore Courses"
+      image: "/images/hero/slider 102.jpg",
+     
     },
     {
       id: 3,
-      image: "/images/hero/hero3.jpg",
-      title: "Your Success is Our Mission",
-      subtitle: "Personalized attention, comprehensive study materials, and continuous support for every student",
-      cta: "Join Now"
+      image: "/images/hero/slider 104.jpg",
+      
+    },
+    {
+      id: 4,
+      image: "/images/hero/slider 105.jpg",
+      
     }
   ],
 
@@ -73,6 +72,17 @@ export const siteData = {
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       features: ["100% Job Assistance", "Certificate: Yes", "Real Projects", "Career Guidance"]
+    },
+    {
+      
+      id: 5,
+      name: "Digital Marketing",
+      description: "Comprehensive digital marketing course covering SEO, social media marketing, and paid advertising strategies.",
+      image: "/images/courses/digitalmarketing.jpg",
+      duration: "100 Hours / 3 Months",
+      rating: "4.8",
+      category: "Marketing",
+      features: ["100% Job Assistance", "Certificate: Yes"],
     }
   ],
 
@@ -402,18 +412,39 @@ export const siteData = {
     }
   ],
 
+  abouthero: {
+  heading: "We Always Ensure Best Course For Your Learning",
+  paragraphs: [
+    "Voiture Coaching Institute is one of the best IT Training & Staffing Services Provider in Pune, dedicated to introducing new skills and talent into IT Sector. We are a proudly unique company with services covering all levels of IT recruitment and skill development.",
+    "Since 2020, we have helped over 1000 people launch their careers in the Tech and Digital Industries and supported their further development with our blend of training and recruitment services.",
+    "In this expeditious environment, our team has an optimum blend of Experienced Engineers, Business Developers and Human Resourcing Experts with cumulative experience of over 3-4 decades, who are committed to providing high-quality, hands-on learning experiences of aspiring engineers and IT professionals."
+  ],
+  features: [
+    {
+      icon: "User",
+      title: "Expert Instructors",
+      description: "Our courses are taught by experienced professionals and industry experts with years of hands-on experience."
+    },
+    {
+      icon: "GraduationCap",
+      title: "Industry-Relevant Curriculum",
+      description: "Our programs are designed with input from leading industry professionals to ensure that you learn the skills employers demand."
+    },
+    {
+      icon: "Briefcase",
+      title: "Career Support",
+      description: "We offer career guidance, job placement assistance, and networking opportunities to help you launch a successful career."
+    }
+  ]
+},
+
+
+
   // About Us Data
    about: {
     title: "We Always Ensure Best Course For Your Learning",
-    description: "Voiture career institute is one of the best IT Training & Staffing Services Provider in Pune, dedicated to introducing new skills and talent into IT Sector. We are a proudly unique company with services covering all levels of IT recruitment and skill development.",
-    mission: "Since 2020, we have helped over 1000 people launch their careers in the Tech and Digital Industries and supported their further development with our blend of training and recruitment services.",
-    vision: "In this expeditious environment, our team has an optimum blend of Experienced Engineers, Business Developers and Human Resourcing Experts with cumulative experience of over 3-4 decades, who are committed to providing high-quality, hands-on learning experiences of aspiring engineers and IT professionals.",
-    stats: [
-      { number: "1000+", label: "Careers Launched" },
-      { number: "3-4", label: "Decades of Experience" },
-      { number: "20+", label: "Industry Experts" },
-      { number: "95%", label: "Placement Rate" }
-    ],
+    description: "Voiture career institute We are a “Best in Class” institute in Pune that offers multiple top-notch courses. Our team has an optimum blend of Experienced Engineers, Business Developers and Human Resourcing Experts with cumulative experience of over 3-4 decades, who contribute to Customer Success by Providing again the best in Class People, Processes & Solutions.",
+     
     achievements: [
       "Best IT Training Institute in Pune – 2023",
       "Top Staffing Services Provider – Western India 2022", 
@@ -438,71 +469,101 @@ export const siteData = {
 
   // Why Choose Us Data
   whyChooseUs: [
-    {
-      id: 1,
-      icon: "GraduationCap",
-      title: "Expert Faculty",
-      description: "Learn from highly qualified and experienced teachers who are subject matter experts."
-    },
-    {
-      id: 2,
-      icon: "Target",
-      title: "Proven Results",
-      description: "95% success rate with thousands of students achieving their goals every year."
-    },
-    {
-      id: 3,
-      icon: "BookOpen",
-      title: "Comprehensive Study Material",
-      description: "Well-researched and updated study materials covering entire syllabus effectively."
-    },
-    {
-      id: 4,
-      icon: "Users",
-      title: "Small Batch Size",
-      description: "Limited students per batch ensuring personalized attention for every student."
-    },
-    {
-      id: 5,
-      icon: "Clock",
-      title: "Flexible Timings",
-      description: "Multiple batch timings available to suit different student schedules."
-    },
-    {
-      id: 6,
-      icon: "Award",
-      title: "Regular Assessment",
-      description: "Weekly tests and monthly assessments to track progress and improve performance."
-    }
-  ],
+  {
+    id: 1,
+    icon: "CheckCircle", // use a filled check or orange circle check icon
+    title: "Network of People",
+    description: "Promotes synergy, fosters collaboration, and enhances team dynamics for organizational success."
+  },
+  {
+    id: 2,
+    icon: "CheckCircle",
+    title: "Benefits",
+    description: "Evaluates competencies, identifies gaps, and fosters growth for organizational success."
+  },
+  {
+    id: 3,
+    icon: "CheckCircle",
+    title: "Makes provisions",
+    description: "Ensures ROI justifies training investments, optimizing expenditure and performance outcomes."
+  },
+  {
+    id: 4,
+    icon: "CheckCircle",
+    title: "Enhances Performance",
+    description: "Enhances performance, boosts productivity, aligns with business goals effectively."
+  }
+]
+,
 
   // Testimonials Data
   testimonials: [
-    {
-      id: 1,
-      name: "Rahul Sharma",
-      course: "JAVA Full Stack",
-      rating: 5,
-      text: "Voiture Coaching helped me master full stack Java development. The comprehensive curriculum and expert faculty made all the difference in my career.",
-      achievement: "Software Developer at TCS"
-    },
-    {
-      id: 2,
-      name: "Priya Patel",
-      course: "Data Science",
-      rating: 5,
-      text: "The Data Science course at Voiture was exceptional. I gained practical skills in machine learning and landed my dream job as a data scientist and faculty was fantastic.",
-      achievement: "Data Scientist at Infosys"
-    },
-    {
-      id: 3,
-      name: "Arjun Kumar",
-      course: "Digital Marketing",
-      rating: 5,
-      text: "The digital marketing course equipped me with all the necessary skills. The hands-on approach and real projects made learning engaging and effective.",
-      achievement: "Digital Marketing Manager at Wipro"
-    }
-  ],
+  {
+    id: 1,
+    name: "Arun Rana",
+    image: "/images/testimonials/arun kumar.JPG",
+    rating: 5,
+    text: "Great place to learn! Voiture Coaching Institute has top-quality courses and a strong focus on practical learning. I feel more confident in my tech skills now!"
+  },
+  {
+    id: 2,
+    name: "Akshay Mane",
+    image: "/images/testimonials/akshay mane.JPG",
+    rating: 5,
+    text: "Highly recommend Voiture Coaching Institute for anyone serious about learning technology. The lessons are clear, and the practical sessions are top-notch. Worth every penny!"
+  },
+  {
+    id: 3,
+    name: "Rajesh Raut",
+    image: "/images/testimonials/rajesh raut.JPG",
+    rating: 5,
+    text: "I had a great experience at Voiture Coaching Institute. The courses are practical and industry-oriented. The instructors are friendly and always ready to help."
+  },
+  {
+    id: 4,
+    name: "Rahis Shaikh",
+    image: "/images/testimonials/rahis shaikh.JPG",
+    rating: 5,
+    text: "The coaching center emphasizes hands-on learning, particularly for mechanical engineering students. The support staff is responsive and helpful."
+  },
+  {
+    id: 5,
+    name: "Ajit Gaikwade",
+    image: "/images/testimonials/ajit gaikwade.JPG",
+    rating: 5,
+    text: "A fantastic learning experience! The courses at Voiture Coaching Institute are well-structured, and the support from the staff is outstanding. My technical skills have improved tremendously."
+  },
+  {
+    id: 6,
+    name: "Saurabh Patil",
+    image: "/images/testimonials/Saurabh Patil.JPG",
+    rating: 5,
+    text: "The faculty members at the center are highly experienced. Their teaching style is engaging, and they often go beyond the textbook to include real-world examples, making learning more practical and applicable."
+  },
+  {
+    id: 7,
+    name: "Rajesh Chaudhary",
+    image: "/images/testimonials/rajesh chaudhari.JPG",
+    rating: 5,
+    text: "The coaching center provides a well-rounded curriculum, designed to cover both foundational and advanced topics in mechanical engineering and IT."
+  },
+  {
+    id: 1,
+    name: "Arun Rana",
+    image: "/images/testimonials/arun kumar.JPG",
+    rating: 5,
+    text: "Great place to learn! Voiture Coaching Institute has top-quality courses and a strong focus on practical learning. I feel more confident in my tech skills now!"
+  },
+  {
+    id: 2,
+    name: "Akshay Mane",
+    image: "/images/testimonials/akshay mane.JPG",
+    rating: 5,
+    text: "Highly recommend Voiture Coaching Institute for anyone serious about learning technology. The lessons are clear, and the practical sessions are top-notch. Worth every penny!"
+  },
+  
+],
+
 
   // Gallery Data
   gallery: [

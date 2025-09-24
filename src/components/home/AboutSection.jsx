@@ -56,51 +56,7 @@ const AboutSection = () => {
               </p>
             </div>
             
-            {/* Stats - Slide from Left with Delays */}
-            <div className="grid grid-cols-2 gap-8">
-              {siteData.about.stats.map((stat, index) => (
-                <div 
-                  key={index} 
-                  className={`text-center transition-all duration-[1200ms] ease-out ${
-                    visibleElements.has('left-content') 
-                      ? 'opacity-100 translate-x-0' 
-                      : 'opacity-0 -translate-x-16'
-                  }`}
-                  style={{ transitionDelay: `${300 + index * 200}ms` }}
-                >
-                  <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-3">
-                    {stat.number}
-                  </div>
-                  <div className="text-gray-600 font-medium">{stat.label}</div>
-                </div>
-              ))}
-            </div>
             
-            {/* Mission - Slide from Left */}
-            <div 
-              className={`transition-all duration-[1400ms] ease-out ${
-                visibleElements.has('left-content') 
-                  ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 -translate-x-12'
-              }`}
-              style={{ transitionDelay: '700ms' }}
-            >
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Our Mission</h3>
-              <p className="text-gray-600 leading-relaxed">{siteData.about.mission}</p>
-            </div>
-            
-            {/* Vision - Slide from Left */}
-            <div 
-              className={`transition-all duration-[1400ms] ease-out ${
-                visibleElements.has('left-content') 
-                  ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 -translate-x-12'
-              }`}
-              style={{ transitionDelay: '900ms' }}
-            >
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Our Vision</h3>
-              <p className="text-gray-600 leading-relaxed">{siteData.about.vision}</p>
-            </div>
             
             {/* Button - Slide from Left */}
             <div 

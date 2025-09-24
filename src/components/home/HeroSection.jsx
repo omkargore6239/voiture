@@ -1,100 +1,199 @@
-import React from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
-import { useImageSlider } from '../../hooks/useImageSlider';
+import React, { useEffect, useState } from 'react';
 import { siteData } from '../../data/siteData';
 
 const HeroSection = () => {
-  const {
-    currentIndex,
-    goToSlide,
-    goToNext,
-    goToPrev,
-    pause,
-    play,
-    isPlaying
-  } = useImageSlider(siteData.heroSlides);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  const currentSlide = siteData.heroSlides[currentIndex];
+  // Preload images
+  useEffect(() => {
+    let loadedCount = 0;
+    const totalImages = siteData.heroSlides.length;
+    
+    if (totalImages === 0) {
+      setImagesLoaded(true);
+      return;
+    }
+
+    siteData.heroSlides.forEach((slide) => {
+      const img = new window.Image();
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          setImagesLoaded(true);
+        }
+      };
+      img.onerror = () => {
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          setImagesLoaded(true);
+        }
+      };
+      img.src = slide.image;
+    });
+  }, []);
+
+  // Auto slide functionality for both mobile and desktop
+  useEffect(() => {
+    if (!imagesLoaded || siteData.heroSlides.length <= 1) return;
+    
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % siteData.heroSlides.length;
+        console.log('Auto sliding to index:', nextIndex); // Debug log
+        return nextIndex;
+      });
+    }, 4000); // Reduced to 4 seconds for more noticeable sliding
+
+    return () => clearInterval(timer);
+  }, [imagesLoaded]);
+
+  // Manual slide navigation
+  const goToSlide = (idx) => {
+    setCurrentIndex(idx);
+  };
+
+  if (!siteData.heroSlides || siteData.heroSlides.length === 0) {
+    return <div className="w-full h-[240px] md:h-screen bg-gray-200"></div>;
+  }
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Images */}
-      <div className="absolute inset-0">
-  {siteData.heroSlides.map((slide, index) => (
-    <div
-      key={slide.id}
-      className={`absolute inset-0 transition-opacity duration-1000 ${
-        index === currentIndex ? "opacity-100" : "opacity-0"
-      }`}
-    >
-      <img
-        src="/banner1.jpg"
-        alt={slide.title}
-        className="w-full h-full object-cover"
-        onError={(e) => {
-          e.target.src =
-            "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80";
-        }}
-      />
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-    </div>
-  ))}
-</div>
-
-
-      {/* Content */}
-      <div className="relative z-10 text-center text-white container-custom px-4">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in">
-          {currentSlide.title}
-        </h1>
-        <p className="text-lg md:text-xl lg:text-2xl mb-8 max-w-3xl mx-auto animate-fade-in">
-          {currentSlide.subtitle}
-        </p>
-        <button className="btn-primary text-lg px-8 py-4 animate-fade-in">
-          {currentSlide.cta}
-        </button>
+    <section className="w-full relative">
+      {/* HERO SLIDER - Mobile Only */}
+      <div className="block md:hidden w-full relative bg-white">
+        <div
+          className="flex transition-transform duration-700 ease-in-out"
+          style={{
+            width: `${siteData.heroSlides.length * 100}%`,
+            transform: `translateX(-${currentIndex * (100 / siteData.heroSlides.length)}%)`
+          }}
+        >
+          {siteData.heroSlides.map((slide, idx) => (
+            <div
+              key={slide.id || idx}
+              className="w-full flex-shrink-0 h-[190px] sm:h-[240px] relative"
+              style={{ width: `${100 / siteData.heroSlides.length}%` }}
+            >
+              <img
+                src={slide.image}
+                alt={`Hero ${idx + 1}`}
+                className={`w-full h-full object-contain bg-white transition-opacity duration-500 rounded-b-xl ${
+                  imagesLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{ display: 'block', margin: '0 auto' }}
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          ))}
+        </div>
+        
+        {/* Mobile Indicator Dots */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5 z-10">
+          {siteData.heroSlides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => goToSlide(idx)}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 border border-gray-300 shadow ${
+                idx === currentIndex ? 'bg-[#fdab01]' : 'bg-white'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+        
+        {!imagesLoaded && (
+          <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-30">
+            <div className="animate-spin rounded-full h-8 w-8 border-t-4 border-orange-300"></div>
+          </div>
+        )}
       </div>
-
-      {/* Navigation Arrows */}
-      <button
-        onClick={goToPrev}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 p-2 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-75 transition-all"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft size={24} />
-      </button>
       
-      <button
-        onClick={goToNext}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 p-2 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-75 transition-all"
-        aria-label="Next slide"
-      >
-        <ChevronRight size={24} />
-      </button>
-
-      {/* Play/Pause Button */}
-      <button
-        onClick={isPlaying ? pause : play}
-        className="absolute top-4 right-4 z-20 p-2 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-75 transition-all"
-        aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
-      >
-        {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-      </button>
-
-      {/* Dots Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
-        {siteData.heroSlides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              index === currentIndex
-                ? 'bg-white scale-125'
-                : 'bg-white bg-opacity-50 hover:bg-opacity-75'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+      {/* DESKTOP HERO - Full Screen Auto Slider */}
+      <div className="hidden md:block w-full h-screen relative overflow-hidden bg-gray-900">
+        <div
+          className="flex h-full transition-transform duration-1000 ease-in-out"
+          style={{
+            width: `${siteData.heroSlides.length * 100}%`,
+            transform: `translateX(-${currentIndex * (100 / siteData.heroSlides.length)}%)`
+          }}
+        >
+          {siteData.heroSlides.map((slide, idx) => (
+            <div
+              key={slide.id || `desktop-${idx}`}
+              className="flex-shrink-0 h-full relative"
+              style={{ width: `${100 / siteData.heroSlides.length}%` }}
+            >
+              <img
+                src={slide.image}
+                alt={`Hero Desktop ${idx + 1}`}
+                className={`w-full h-full transition-opacity duration-500 ${
+                  imagesLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                loading="eager"
+                decoding="async"
+              />
+              {/* Optional: Add slide content overlay */}
+              {slide.title && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                  <h2 className="text-white text-4xl md:text-6xl font-bold text-center">
+                    {slide.title}
+                  </h2>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        
+        {/* Desktop Navigation Arrows */}
+        <button
+          onClick={() => goToSlide((currentIndex - 1 + siteData.heroSlides.length) % siteData.heroSlides.length)}
+          className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 z-10"
+          aria-label="Previous slide"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        
+        <button
+          onClick={() => goToSlide((currentIndex + 1) % siteData.heroSlides.length)}
+          className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 z-10"
+          aria-label="Next slide"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+          </button>
+        
+        {/* Desktop Indicator Dots */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
+          {siteData.heroSlides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => goToSlide(idx)}
+              className={`w-4 h-4 rounded-full transition-all duration-300 border-2 border-white/50 shadow-lg hover:scale-110 ${
+                idx === currentIndex ? 'bg-white' : 'bg-white/30'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+        
+        {/* Desktop Loading State */}
+        {!imagesLoaded && (
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-30">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-white mb-4"></div>
+              <p className="text-white text-lg">Loading Images...</p>
+            </div>
+          </div>
+        )}
+        
+        {/* Slide Counter */}
+        <div className="absolute top-6 right-6 bg-black/30 text-white px-4 py-2 rounded-full text-sm z-10">
+          {currentIndex + 1} / {siteData.heroSlides.length}
+        </div>
       </div>
     </section>
   );

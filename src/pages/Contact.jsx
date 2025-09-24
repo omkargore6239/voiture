@@ -489,14 +489,14 @@ const Contact = () => {
                 <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-2">Moshi Branch</h3>
                 <p className="text-xs md:text-sm text-gray-600 mb-3 leading-relaxed">{siteData.contact.address[1]}</p>
                 <div className="space-y-1 mb-3 md:mb-4">
-                  <p className="text-secondary-600 font-semibold text-sm md:text-base">{siteData.contact.phone2}</p>
+                  <p className="text-red-600 font-semibold text-sm md:text-base">{siteData.contact.phone2}</p>
                   <p className="text-gray-500 text-xs">Secondary Branch</p>
                 </div>
               </div>
               <div className="space-y-2">
                 <a 
                   href={`tel:${siteData.contact.phone2}`} 
-                  className="block bg-secondary-600 hover:bg-secondary-700 text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 text-sm md:text-base"
+                  className="block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 text-sm md:text-base"
                 >
                   Call Moshi Branch
                 </a>
@@ -507,30 +507,7 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Common Email Card - Slide from Bottom Center */}
-          <div className="max-w-md mx-auto mt-6 md:mt-8">
-            <div 
-              className={`bg-white p-4 md:p-6 text-center hover:scale-105 transition-all duration-[1600ms] ease-out rounded-lg shadow-lg ${
-                visibleElements.has('email-card') 
-                  ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 translate-y-12'
-              }`}
-              data-animate="email-card"
-              style={{ transitionDelay: '600ms' }}
-            >
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-                <Mail className="text-white" size={20} />
-              </div>
-              <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-2">Email Both Branches</h3>
-              <p className="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">{siteData.contact.email}</p>
-              <a 
-                href={`mailto:${siteData.contact.email}`} 
-                className="bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 text-sm md:text-base"
-              >
-                Send Email
-              </a>
-            </div>
-          </div>
+          
         </div>
       </section>
     </div>

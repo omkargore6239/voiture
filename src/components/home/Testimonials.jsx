@@ -1,194 +1,116 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Star, Quote } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { siteData } from '../../data/siteData';
 
-const TestimonialCard = ({ testimonial, index, isVisible }) => {
-  // Determine animation direction - alternating wave pattern
-  const getAnimationDirection = (index) => {
-    return index % 2 === 0 ? 'left' : 'right';
-  };
-
-  const direction = getAnimationDirection(index);
-  
+const TestimonialCard = ({ testimonial }) => {
   return (
-    <div 
-      className={`bg-white p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-[1800ms] ease-out relative group ${
-        isVisible 
-          ? 'opacity-100 translate-x-0 scale-100' 
-          : `opacity-0 ${direction === 'left' ? '-translate-x-24' : 'translate-x-24'} scale-95`
-      }`}
-      style={{ transitionDelay: `${300 + index * 250}ms` }}
-    >
-      {/* Quote Icon with Rotation Animation */}
-      <Quote 
-        className={`absolute top-4 right-4 text-primary-200 transition-all duration-[1400ms] ease-out ${
-          isVisible 
-            ? 'opacity-100 rotate-0 scale-100' 
-            : 'opacity-0 rotate-45 scale-75'
-        }`}
-        style={{ transitionDelay: `${600 + index * 250}ms` }}
-        size={32} 
-      />
-      
-      {/* Rating Stars with Sequential Animation */}
-      <div 
-        className={`flex items-center mb-4 transition-all duration-[1200ms] ease-out ${
-          isVisible 
-            ? 'opacity-100 translate-y-0' 
-            : 'opacity-0 translate-y-4'
-        }`}
-        style={{ transitionDelay: `${500 + index * 250}ms` }}
-      >
+    <div className="bg-white p-8 rounded-2xl shadow-lg min-h-[400px] flex flex-col group transition-shadow hover:shadow-xl duration-300">
+      <div className="flex justify-center mb-6">
+        <img
+          src={testimonial.image}
+          alt={testimonial.name}
+          className="w-24 h-24 rounded-full object-cover border-4 border-blue-200 shadow-lg group-hover:scale-105 transition-transform duration-300"
+          onError={(e) => {
+            e.target.src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80";
+          }}
+        />
+      </div>
+      <div className="flex justify-center items-center mb-4">
         {[...Array(testimonial.rating)].map((_, i) => (
-          <Star
-            key={i}
-            size={18}
-            className={`text-yellow-400 fill-current transition-all duration-[800ms] ease-out ${
-              isVisible 
-                ? 'opacity-100 scale-100' 
-                : 'opacity-0 scale-75'
-            }`}
-            style={{ transitionDelay: `${600 + index * 250 + i * 100}ms` }}
-          />
+          <Star key={i} size={20} className="text-yellow-400 fill-current mr-1" />
         ))}
       </div>
-      
-      {/* Testimonial Text with Typewriter Effect */}
-      <p 
-        className={`text-gray-700 leading-relaxed italic mb-6 text-base md:text-lg transition-all duration-[1600ms] ease-out ${
-          isVisible 
-            ? 'opacity-100 translate-y-0' 
-            : 'opacity-0 translate-y-6'
-        }`}
-        style={{ transitionDelay: `${700 + index * 250}ms` }}
-      >
-        "{testimonial.text}"
-      </p>
-      
-      {/* Student Info with Bottom-Up Animation */}
-      <div 
-        className={`border-t pt-4 transition-all duration-[1400ms] ease-out ${
-          isVisible 
-            ? 'opacity-100 translate-y-0' 
-            : 'opacity-0 translate-y-8'
-        }`}
-        style={{ transitionDelay: `${800 + index * 250}ms` }}
-      >
-        <h4 
-          className={`font-bold text-gray-800 text-lg transition-all duration-[1000ms] ease-out ${
-            isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-4'
-          }`}
-          style={{ transitionDelay: `${850 + index * 250}ms` }}
-        >
-          {testimonial.name}
-        </h4>
-        <p 
-          className={`text-gray-600 text-sm font-medium transition-all duration-[1000ms] ease-out ${
-            isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-4'
-          }`}
-          style={{ transitionDelay: `${900 + index * 250}ms` }}
-        >
-          {testimonial.course}
-        </p>
-        <p 
-          className={`text-primary-600 text-sm font-semibold mt-1 transition-all duration-[1000ms] ease-out ${
-            isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-4'
-          }`}
-          style={{ transitionDelay: `${950 + index * 250}ms` }}
-        >
-          {testimonial.achievement}
-        </p>
+      <h4 className="font-bold text-blue-600 text-xl text-center mb-6">{testimonial.name}</h4>
+      <div className="flex-grow flex items-center justify-center">
+        <p className="text-gray-700 leading-relaxed text-center text-sm italic bg-gray-50 p-4 rounded-lg">{testimonial.text}</p>
       </div>
-
-      {/* Hover Glow Effect */}
-      <div 
-        className={`absolute inset-0 bg-gradient-primary opacity-0 rounded-xl transition-all duration-500 ${
-          isVisible ? 'group-hover:opacity-5' : ''
-        }`}
-      />
     </div>
   );
 };
 
 const Testimonials = () => {
-  const [visibleElements, setVisibleElements] = useState(new Set());
-  const observerRef = useRef(null);
+  const testimonials = siteData.testimonials;
 
+  // Create groups of testimonials: 3 reviews, 3 reviews, 1 review
+  const groupedTestimonials = [];
+  for (let i = 0; i < testimonials.length; i += 3) {
+    groupedTestimonials.push(testimonials.slice(i, i + 3));
+  }
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const maxIndex = groupedTestimonials.length - 1;
+
+  // Auto advance the slider every 4s
   useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              setVisibleElements(prev => new Set([...prev, entry.target.dataset.animate]));
-            }, 150);
-          }
-        });
-      },
-      { 
-        threshold: 0.1, 
-        rootMargin: '0px 0px -30px 0px' 
-      }
-    );
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev === maxIndex ? 0 : prev + 1));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [maxIndex]);
 
-    const elements = document.querySelectorAll('[data-animate]');
-    elements.forEach(el => observerRef.current.observe(el));
-
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
-  }, []);
+  const goPrev = () => setCurrentIndex(currentIndex === 0 ? maxIndex : currentIndex - 1);
+  const goNext = () => setCurrentIndex(currentIndex === maxIndex ? 0 : currentIndex + 1);
 
   return (
-    <section className="py-8 md:py-12 lg:py-16 bg-gray-50 overflow-hidden">
-      <div className="container-custom px-4">
-        {/* Header Section - Title from Left, Description from Right */}
-        <div 
-          className="text-center mb-8 md:mb-12"
-          data-animate="header"
-        >
-          <h2 
-            className={`text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4 transition-all duration-[1800ms] ease-out ${
-              visibleElements.has('header') 
-                ? 'opacity-100 translate-x-0' 
-                : 'opacity-0 -translate-x-20'
-            }`}
-          >
+    <section className="py-16 bg-gray-50">
+      <div className="container-custom px-4 max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">
             What Our <span className="text-gradient">Students Say</span>
           </h2>
-          <p 
-            className={`text-base md:text-lg text-gray-600 max-w-2xl mx-auto transition-all duration-[1600ms] ease-out ${
-              visibleElements.has('header') 
-                ? 'opacity-100 translate-x-0' 
-                : 'opacity-0 translate-x-20'
-            }`}
-            style={{ transitionDelay: '300ms' }}
-          >
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Read success stories from our students who achieved their dreams with our guidance and support.
           </p>
         </div>
-        
-        {/* Testimonials Grid - Wave Animation Pattern */}
-        <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-          data-animate="testimonials"
-        >
-          {siteData.testimonials.map((testimonial, index) => (
-            <TestimonialCard 
-              key={testimonial.id} 
-              testimonial={testimonial} 
-              index={index}
-              isVisible={visibleElements.has('testimonials')}
-            />
-          ))}
+
+        {/* Slider Container */}
+        <div className="relative overflow-hidden">
+          <div
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{ width: `${groupedTestimonials.length * 100}%`, transform: `translateX(-${(currentIndex * 100) / groupedTestimonials.length}%)` }}
+          >
+            {groupedTestimonials.map((group, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 px-4"
+                style={{ width: `${100 / groupedTestimonials.length}%` }}
+              >
+                <div className={`grid ${group.length === 1 ? 'grid-cols-1 justify-items-center' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'} gap-8`}>
+                  {group.map((testimonial) => (
+                    <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Navigation Buttons */}
+          <button
+            onClick={goPrev}
+            aria-label="Previous testimonials"
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 z-20 p-3 bg-white rounded-full shadow-lg text-gray-700 hover:text-blue-600 hover:shadow-xl transition"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button
+            onClick={goNext}
+            aria-label="Next testimonials"
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 z-20 p-3 bg-white rounded-full shadow-lg text-gray-700 hover:text-blue-600 hover:shadow-xl transition"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          {/* Dots */}
+          <div className="flex justify-center space-x-3 mt-8">
+            {groupedTestimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i)}
+                className={`w-4 h-4 rounded-full transition-colors duration-300 ${i === currentIndex ? 'bg-blue-600' : 'bg-gray-300 hover:bg-gray-400'}`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
