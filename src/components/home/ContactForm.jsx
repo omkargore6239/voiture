@@ -99,7 +99,7 @@ const ContactForm = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your full name"
-                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-500 text-gray-800"
+                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-600 text-gray-800"
                 />
               </div>
               <div>
@@ -112,7 +112,7 @@ const ContactForm = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="your.email@example.com"
-                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-500 text-gray-800"
+                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-600 text-gray-800"
                 />
               </div>
             </div>
@@ -127,7 +127,7 @@ const ContactForm = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+91 9876543210"
-                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-500 text-gray-800"
+                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-600 text-gray-800"
                 />
               </div>
               <div>
@@ -138,7 +138,7 @@ const ContactForm = () => {
                   required
                   value={formData.branch}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-500 text-gray-800"
+                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-600 text-gray-800"
                 >
                   <option value="">Select a branch</option>
                   <option value="Ravet">Ravet Branch</option>
@@ -154,7 +154,7 @@ const ContactForm = () => {
                   id="course"
                   value={formData.course}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-500 text-gray-800"
+                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-600 text-gray-800"
                 >
                   <option value="">Select a course</option>
                   {siteData.popularCourses?.map((course) => (
@@ -174,7 +174,7 @@ const ContactForm = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="Brief subject of your inquiry"
-                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-500 text-gray-800"
+                  className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-600 text-gray-800"
                 />
               </div>
             </div>
@@ -187,14 +187,14 @@ const ContactForm = () => {
                 value={formData.message}
                 onChange={handleChange}
                 rows={3}
-                className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-500 text-gray-800 resize-none"
+                className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-600 text-gray-800 resize-none"
                 placeholder="Tell us about your goals and how we can help you..."
               />
             </div>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex items-center justify-center py-3 text-base font-semibold rounded-md transition-all bg-gradient-to-r from-red-500 to-red-500 text-white hover:from-red-600 hover:to-red-600"
+              className="w-full flex items-center justify-center py-3 text-base font-semibold rounded-md transition-all bg-gradient-to-r from-red-600 to-red-600 text-white hover:from-red-600 hover:to-red-600"
             >
               {isSubmitting ? (
                 <svg className="animate-spin w-5 h-5 mr-2 text-white" viewBox="0 0 24 24">
@@ -250,7 +250,7 @@ const ContactForm = () => {
             <span className="ml-7 text-xs text-gray-500">We'll respond within 24 hours</span>
           </div>
           {/* Office Hours Card */}
-          <div className="rounded-lg shadow-sm p-4 mt-2 border-l-4 border-red-600 bg-gradient-to-r from-red-500/90 to-red-500/90 text-white">
+          <div className="rounded-lg shadow-sm p-4 mt-2 border-l-4 border-red-600 bg-gradient-to-r from-red-600/90 to-red-600/90 text-white">
             <div className="flex items-center mb-2">
               <svg width={22} height={22} className="text-white mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
               <span className="font-bold text-lg">Office Hours (Both Branches)</span>
