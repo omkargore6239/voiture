@@ -244,7 +244,7 @@ const Contact = () => {
   return (
     <div className="overflow-hidden">
       {/* Hero Section - Title from Left, Description from Right */}
-      <section className="py-8 md:py-12 lg:py-16 bg-gradient-primary text-white">
+      <section className="py-8 md:py-12 lg:py-16 bg-gradient-red text-white">
         <div className="container-custom text-center px-4">
           <h1 
             className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 transition-all duration-[1800ms] ease-out ${
