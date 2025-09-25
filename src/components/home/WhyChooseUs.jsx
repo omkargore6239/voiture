@@ -38,39 +38,67 @@ const WhyChooseUs = () => {
   return (
     <section className="section-padding bg-gray-50 overflow-hidden">
       <div className="container-custom flex flex-col md:flex-row md:gap-12 md:items-center">
-        {/* Left Image */}
-        <div className="md:w-1/2 mb-12 md:mb-0" data-animate="image">
-          <img
-            src="/whychooseus.jpg"
-            alt="Why Choose Us Illustration"
-            className="w-full h-auto rounded-lg shadow-xl"
-          />
+        {/* Left Image - Animated from left to right */}
+        <div 
+          className="md:w-1/2 mb-12 md:mb-0" 
+          data-animate="image"
+        >
+          <div
+            className={`transform transition-all duration-[1200ms] ease-out ${
+              visibleElements.has('image') 
+                ? 'opacity-100 translate-x-0 scale-100' 
+                : 'opacity-0 -translate-x-16 scale-95'
+            }`}
+          >
+            <img
+              src="/whychooseus.jpg"
+              alt="Why Choose Us Illustration"
+              className={`w-full h-auto rounded-lg shadow-xl transform transition-all duration-[1000ms] ease-out ${
+                visibleElements.has('image') 
+                  ? 'scale-100 rotate-0' 
+                  : 'scale-105 -rotate-1'
+              }`}
+              style={{ transitionDelay: '200ms' }}
+              onError={(e) => {
+                // Fallback image if original fails to load
+                e.target.src = 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+              }}
+            />
+          </div>
         </div>
 
         {/* Right Content */}
-        <div className="md:w-1/2" data-animate="content">
+        <div 
+          className="md:w-1/2" 
+          data-animate="content"
+        >
           <div className="mb-8 text-center md:text-left">
-            <span className="inline-block bg-gray-200 rounded-full px-4 py-1 text-sm font-semibold text-red-400 mb-3">
+            <span 
+              className={`inline-block bg-gray-200 rounded-full px-4 py-1 text-sm font-semibold text-red-400 mb-3 transition-all duration-[800ms] ease-out ${
+                visibleElements.has('content') 
+                  ? 'opacity-100 translate-y-0 scale-100' 
+                  : 'opacity-0 translate-y-4 scale-95'
+              }`}
+            >
               WHY CHOOSE US
             </span>
             <h2 
-              className={`text-3xl md:text-4xl font-bold text-gray-800 mb-4 transition-all duration-[1800ms] ease-out ${
+              className={`text-3xl md:text-4xl font-bold text-gray-800 mb-4 transition-all duration-[1200ms] ease-out ${
                 visibleElements.has('content') 
                   ? 'opacity-100 translate-x-0' 
                   : 'opacity-0 translate-x-10'
               }`}
-              data-animate="header-title"
+              style={{ transitionDelay: '200ms' }}
             >
               Our courses will help you to achieve success
             </h2>
             <p
-              className={`text-gray-600 text-base md:text-lg max-w-xl transition-all duration-[1600ms] ease-out ${
+              className={`text-gray-600 text-base md:text-lg max-w-xl transition-all duration-[1000ms] ease-out ${
                 visibleElements.has('content') 
                   ? 'opacity-100 translate-x-0' 
                   : 'opacity-0 translate-x-10'
               }`}
-              style={{ transitionDelay: '300ms' }}
-              data-animate="header-desc"
+              style={{ transitionDelay: '400ms' }}
             >
              Voiture Coaching Institute enhances individual and team performance, ensures training ROI, evaluates competencies, and addresses attrition, contributing to organizational success and asset retention. Join us for your better future development.
             </p>
@@ -83,19 +111,44 @@ const WhyChooseUs = () => {
             {siteData.whyChooseUs.map((item, index) => (
               <div
                 key={item.id}
-                className={`bg-gray-200 rounded-lg p-6 flex gap-4 items-start transition-all duration-[1800ms] ease-out ${
+                className={`bg-white rounded-lg p-6 flex gap-4 items-start shadow-md hover:shadow-lg transform transition-all duration-[1000ms] ease-out hover:scale-105 ${
                   visibleElements.has('features') 
-                    ? 'opacity-100 translate-x-0' 
-                    : `opacity-0 translate-x-${index % 2 === 0 ? '-6' : '6'}`
+                    ? 'opacity-100 translate-x-0 translate-y-0' 
+                    : `opacity-0 ${index % 2 === 0 ? '-translate-x-8' : 'translate-x-8'} translate-y-4`
                 }`}
-                style={{ transitionDelay: `${200 + index * 150}ms` }}
+                style={{ transitionDelay: `${300 + index * 150}ms` }}
               >
-                <div className="flex-shrink-0 text-red-400 mt-1">
+                <div 
+                  className={`flex-shrink-0 text-red-400 mt-1 transform transition-all duration-[800ms] ease-out ${
+                    visibleElements.has('features') 
+                      ? 'scale-100 rotate-0' 
+                      : 'scale-75 rotate-12'
+                  }`}
+                  style={{ transitionDelay: `${400 + index * 150}ms` }}
+                >
                   <CheckCircle size={28} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-800 mb-2">{item.title}</h3>
-                  <p className="text-gray-700 text-sm">{item.description}</p>
+                  <h3 
+                    className={`font-semibold text-gray-800 mb-2 transition-all duration-[700ms] ease-out ${
+                      visibleElements.has('features') 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-2'
+                    }`}
+                    style={{ transitionDelay: `${500 + index * 150}ms` }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p 
+                    className={`text-gray-700 text-sm transition-all duration-[600ms] ease-out ${
+                      visibleElements.has('features') 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-2'
+                    }`}
+                    style={{ transitionDelay: `${600 + index * 150}ms` }}
+                  >
+                    {item.description}
+                  </p>
                 </div>
               </div>
             ))}

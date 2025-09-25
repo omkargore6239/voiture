@@ -1,21 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import { siteData } from '../../data/siteData';
 
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
+  // Direct image paths from public/images/hero/ folder
+  const heroSlides = [
+    {
+      id: 1,
+      image: '/images/hero/slider 101.jpg',
+      title: null
+    },
+    {
+      id: 2,
+      image: '/images/hero/slider 102.jpg',
+      title: null
+    },
+    {
+      id: 3,
+      image: '/images/hero/slider 104.jpg',
+      title: null
+    },
+    {
+      id: 4,
+      image: '/images/hero/slider 105.jpg',
+      title: null
+    }
+  ];
+
   // Preload images
   useEffect(() => {
     let loadedCount = 0;
-    const totalImages = siteData.heroSlides.length;
+    const totalImages = heroSlides.length;
     
     if (totalImages === 0) {
       setImagesLoaded(true);
       return;
     }
 
-    siteData.heroSlides.forEach((slide) => {
+    heroSlides.forEach((slide) => {
       const img = new window.Image();
       img.onload = () => {
         loadedCount++;
@@ -35,11 +58,11 @@ const HeroSection = () => {
 
   // Auto slide functionality for both mobile and desktop
   useEffect(() => {
-    if (!imagesLoaded || siteData.heroSlides.length <= 1) return;
+    if (!imagesLoaded || heroSlides.length <= 1) return;
     
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => {
-        const nextIndex = (prevIndex + 1) % siteData.heroSlides.length;
+        const nextIndex = (prevIndex + 1) % heroSlides.length;
         console.log('Auto sliding to index:', nextIndex); // Debug log
         return nextIndex;
       });
@@ -53,7 +76,7 @@ const HeroSection = () => {
     setCurrentIndex(idx);
   };
 
-  if (!siteData.heroSlides || siteData.heroSlides.length === 0) {
+  if (!heroSlides || heroSlides.length === 0) {
     return <div className="w-full h-[240px] md:h-screen bg-gray-200"></div>;
   }
 
@@ -64,15 +87,15 @@ const HeroSection = () => {
         <div
           className="flex transition-transform duration-700 ease-in-out"
           style={{
-            width: `${siteData.heroSlides.length * 100}%`,
-            transform: `translateX(-${currentIndex * (100 / siteData.heroSlides.length)}%)`
+            width: `${heroSlides.length * 100}%`,
+            transform: `translateX(-${currentIndex * (100 / heroSlides.length)}%)`
           }}
         >
-          {siteData.heroSlides.map((slide, idx) => (
+          {heroSlides.map((slide, idx) => (
             <div
               key={slide.id || idx}
               className="w-full flex-shrink-0 h-[190px] sm:h-[240px] relative"
-              style={{ width: `${100 / siteData.heroSlides.length}%` }}
+              style={{ width: `${100 / heroSlides.length}%` }}
             >
               <img
                 src={slide.image}
@@ -90,7 +113,7 @@ const HeroSection = () => {
         
         {/* Mobile Indicator Dots */}
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5 z-10">
-          {siteData.heroSlides.map((_, idx) => (
+          {heroSlides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => goToSlide(idx)}
@@ -114,15 +137,15 @@ const HeroSection = () => {
         <div
           className="flex h-full transition-transform duration-1000 ease-in-out"
           style={{
-            width: `${siteData.heroSlides.length * 100}%`,
-            transform: `translateX(-${currentIndex * (100 / siteData.heroSlides.length)}%)`
+            width: `${heroSlides.length * 100}%`,
+            transform: `translateX(-${currentIndex * (100 / heroSlides.length)}%)`
           }}
         >
-          {siteData.heroSlides.map((slide, idx) => (
+          {heroSlides.map((slide, idx) => (
             <div
               key={slide.id || `desktop-${idx}`}
               className="flex-shrink-0 h-full relative"
-              style={{ width: `${100 / siteData.heroSlides.length}%` }}
+              style={{ width: `${100 / heroSlides.length}%` }}
             >
               <img
                 src={slide.image}
@@ -147,7 +170,7 @@ const HeroSection = () => {
         
         {/* Desktop Navigation Arrows */}
         <button
-          onClick={() => goToSlide((currentIndex - 1 + siteData.heroSlides.length) % siteData.heroSlides.length)}
+          onClick={() => goToSlide((currentIndex - 1 + heroSlides.length) % heroSlides.length)}
           className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 z-10"
           aria-label="Previous slide"
         >
@@ -157,18 +180,18 @@ const HeroSection = () => {
         </button>
         
         <button
-          onClick={() => goToSlide((currentIndex + 1) % siteData.heroSlides.length)}
+          onClick={() => goToSlide((currentIndex + 1) % heroSlides.length)}
           className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 z-10"
           aria-label="Next slide"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
-          </button>
+        </button>
         
         {/* Desktop Indicator Dots */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
-          {siteData.heroSlides.map((_, idx) => (
+          {heroSlides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => goToSlide(idx)}
@@ -192,7 +215,7 @@ const HeroSection = () => {
         
         {/* Slide Counter */}
         <div className="absolute top-6 right-6 bg-black/30 text-white px-4 py-2 rounded-full text-sm z-10">
-          {currentIndex + 1} / {siteData.heroSlides.length}
+          {currentIndex + 1} / {heroSlides.length}
         </div>
       </div>
     </section>

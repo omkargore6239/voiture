@@ -48,7 +48,7 @@ const About = () => {
               About {siteData.siteName}
             </h1>
             <p className="max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
-              Empowering students since 2010 with quality education, expert guidance, and unwavering support in their academic journey.
+              Empowering students since 2022 with quality education, expert guidance, and unwavering support in their academic journey.
             </p>
           </div>
         </section>
@@ -81,7 +81,7 @@ const About = () => {
               visibleElements.has('heroDesc') ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'
             }`}
           >
-            Empowering students since 2010 with quality education, expert guidance, and unwavering support in their academic journey.
+            Empowering students since 2020 with quality education, expert guidance, and unwavering support in their career journey.
           </p>
         </div>
       </section>

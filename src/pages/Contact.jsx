@@ -244,7 +244,7 @@ const Contact = () => {
   return (
     <div className="overflow-hidden">
       {/* Hero Section - Title from Left, Description from Right */}
-      <section className="py-8 md:py-12 lg:py-16 bg-gradient-red text-white">
+      <section className="py-8 md:py-12 lg:py-16 bg-gradient-to-r from-red-600 to-red-700  text-white">
         <div className="container-custom text-center px-4">
           <h1 
             className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 transition-all duration-[1800ms] ease-out ${
@@ -415,101 +415,110 @@ const Contact = () => {
 
       {/* Branch Quick Contact Cards - Alternating Left/Right */}
       <section className="py-8 md:py-12 lg:py-16 bg-gray-50">
-        <div className="container-custom px-4">
-          <div 
-            className={`text-center mb-6 md:mb-8 transition-all duration-[1600ms] ease-out ${
-              visibleElements.has('branch-title') 
-                ? 'opacity-100 translate-x-0' 
-                : 'opacity-0 -translate-x-16'
-            }`}
-            data-animate="branch-title"
-          >
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Choose Your Nearest Branch</h2>
-            <p 
-              className={`text-gray-600 transition-all duration-[1400ms] ease-out ${
-                visibleElements.has('branch-title') 
-                  ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 translate-x-16'
-              }`}
-              style={{ transitionDelay: '200ms' }}
-            >
-              Visit us at any of our two convenient locations
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 max-w-4xl mx-auto">
-            {/* Ravet Branch Card - Slide from Left */}
-            <div 
-              className={`bg-white p-4 md:p-6 text-center hover:scale-105 transition-all duration-[1600ms] ease-out flex flex-col justify-between rounded-lg shadow-lg border-t-4 border-primary-600 ${
-                visibleElements.has('branch-cards') 
-                  ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 -translate-x-20'
-              }`}
-              data-animate="branch-cards"
-              style={{ transitionDelay: '200ms' }}
-            >
-              <div>
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-                  <Building2 className="text-white" size={20} />
-                </div>
-                <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-2">Ravet Branch</h3>
-                <p className="text-xs md:text-sm text-gray-600 mb-3 leading-relaxed">{siteData.contact.address[0]}</p>
-                <div className="space-y-1 mb-3 md:mb-4">
-                  <p className="text-primary-600 font-semibold text-sm md:text-base">{siteData.contact.phone}</p>
-                  <p className="text-gray-500 text-xs">Primary Branch</p>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <a 
-                  href={`tel:${siteData.contact.phone}`} 
-                  className="block bg-primary-600 hover:bg-primary-700 text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 text-sm md:text-base"
-                >
-                  Call Ravet Branch
-                </a>
-                <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg transition-all duration-300 text-sm">
-                  Get Directions
-                </button>
-              </div>
-            </div>
+  <div className="container-custom px-4">
+    <div
+      className={`text-center mb-6 md:mb-8 transition-all duration-[1600ms] ease-out ${
+        visibleElements.has('branch-title')
+          ? 'opacity-100 translate-x-0'
+          : 'opacity-0 -translate-x-16'
+      }`}
+      data-animate="branch-title"
+    >
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Choose Your Nearest Branch</h2>
+      <p
+        className={`text-gray-600 transition-all duration-[1400ms] ease-out ${
+          visibleElements.has('branch-title')
+            ? 'opacity-100 translate-x-0'
+            : 'opacity-0 translate-x-16'
+        }`}
+        style={{ transitionDelay: '200ms' }}
+      >
+        Visit us at any of our two convenient locations
+      </p>
+    </div>
 
-            {/* Moshi Branch Card - Slide from Right */}
-            <div 
-              className={`bg-white p-4 md:p-6 text-center hover:scale-105 transition-all duration-[1600ms] ease-out flex flex-col justify-between rounded-lg shadow-lg border-t-4 border-secondary-600 ${
-                visibleElements.has('branch-cards') 
-                  ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 translate-x-20'
-              }`}
-              data-animate="branch-cards"
-              style={{ transitionDelay: '400ms' }}
-            >
-              <div>
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-secondary-600 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-                  <Building2 className="text-white" size={20} />
-                </div>
-                <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-2">Moshi Branch</h3>
-                <p className="text-xs md:text-sm text-gray-600 mb-3 leading-relaxed">{siteData.contact.address[1]}</p>
-                <div className="space-y-1 mb-3 md:mb-4">
-                  <p className="text-red-600 font-semibold text-sm md:text-base">{siteData.contact.phone2}</p>
-                  <p className="text-gray-500 text-xs">Secondary Branch</p>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <a 
-                  href={`tel:${siteData.contact.phone2}`} 
-                  className="block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 text-sm md:text-base"
-                >
-                  Call Moshi Branch
-                </a>
-                <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg transition-all duration-300 text-sm">
-                  Get Directions
-                </button>
-              </div>
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 max-w-4xl mx-auto">
+      {/* Ravet Branch Card - Slide from Left */}
+      <div
+        className={`bg-white p-4 md:p-6 text-center hover:scale-105 transition-all duration-[1600ms] ease-out flex flex-col justify-between rounded-lg shadow-lg border-t-4 border-primary-600 ${
+          visibleElements.has('branch-cards')
+            ? 'opacity-100 translate-x-0'
+            : 'opacity-0 -translate-x-20'
+        }`}
+        data-animate="branch-cards"
+        style={{ transitionDelay: '200ms' }}
+      >
+        <div>
+          <div className="w-12 h-12 md:w-16 md:h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+            <Building2 className="text-white" size={20} />
           </div>
-
-          
+          <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-2">Ravet Branch</h3>
+          <p className="text-xs md:text-sm text-gray-600 mb-3 leading-relaxed">{siteData.contact.address[0]}</p>
+          <div className="space-y-1 mb-3 md:mb-4">
+            <p className="text-primary-600 font-semibold text-sm md:text-base">{siteData.contact.phone}</p>
+            <p className="text-gray-500 text-xs">Primary Branch</p>
+          </div>
         </div>
-      </section>
+        <div className="space-y-2">
+          <a
+            href={`tel:${siteData.contact.phone}`}
+            className="block bg-primary-600 hover:bg-primary-700 text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 text-sm md:text-base"
+          >
+            Call Ravet Branch
+          </a>
+          <a
+            href="https://wa.me/919307301569"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 text-sm"
+          >
+            WhatsApp Ravet Branch
+          </a>
+        </div>
+      </div>
+
+      {/* Moshi Branch Card - Slide from Right */}
+      <div
+        className={`bg-white p-4 md:p-6 text-center hover:scale-105 transition-all duration-[1600ms] ease-out flex flex-col justify-between rounded-lg shadow-lg border-t-4 border-secondary-600 ${
+          visibleElements.has('branch-cards')
+            ? 'opacity-100 translate-x-0'
+            : 'opacity-0 translate-x-20'
+        }`}
+        data-animate="branch-cards"
+        style={{ transitionDelay: '400ms' }}
+      >
+        <div>
+          <div className="w-12 h-12 md:w-16 md:h-16 bg-secondary-600 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+            <Building2 className="text-white" size={20} />
+          </div>
+          <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-2">Moshi Branch</h3>
+          <p className="text-xs md:text-sm text-gray-600 mb-3 leading-relaxed">{siteData.contact.address[1]}</p>
+          <div className="space-y-1 mb-3 md:mb-4">
+            <p className="text-red-600 font-semibold text-sm md:text-base">{siteData.contact.phone2}</p>
+            <p className="text-gray-500 text-xs">Secondary Branch</p>
+          </div>
+        </div>
+        <div className="space-y-2">
+          <a
+            href={`tel:${siteData.contact.phone2}`}
+            className="block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 text-sm md:text-base"
+          >
+            Call Moshi Branch
+          </a>
+          <a
+            href="https://wa.me/919356418451"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 text-sm"
+          >
+            WhatsApp Moshi Branch
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     </div>
   );
 };

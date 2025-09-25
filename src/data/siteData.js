@@ -1,6 +1,6 @@
 export const siteData = {
   // Site Information
-  siteName: "Voiture Coaching Institute",
+  siteName: "Voiture Career Institute",
   tagline: "Excellence in Education",
   description: "Voiture Institute is a leading provider of IT Training & Recruitment services dedicated to introducing new skills and talent in IT Sector. We are a proudly unique company with services covering all levels of IT recruitment and skill development.",
 
@@ -73,6 +73,17 @@ export const siteData = {
       rating: "4.8",
       features: ["100% Job Assistance", "Certificate: Yes", "Real Projects", "Career Guidance"]
     },
+     {
+      id: 4,
+      name: "Full Stack Python",
+      description: "Complete Python development course covering Django framework and web development fundamentals.",
+      image: "/images/courses/python.jpg",
+      duration: "100 Hours / 3 Months",
+      rating: "4.8",
+      category: "Programming",
+      features: ["100% Job Assistance", "Certificate: Yes"],
+      
+    },
     {
       
       id: 5,
@@ -83,6 +94,84 @@ export const siteData = {
       rating: "4.8",
       category: "Marketing",
       features: ["100% Job Assistance", "Certificate: Yes"],
+    }
+    ,{
+      id: 6,
+      name: "Website Design & Development",
+      description: "Complete web design and development course covering HTML, CSS, JavaScript and responsive design principles.",
+      image: "/images/courses/webdevelopment.jpeg",
+      duration: "100 Hours / 3 Months",
+      rating: "4.8",
+      category: "Web Development",
+      features: ["100% Job Assistance", "Certificate: Yes"],
+      
+    },
+    {
+      id: 7,
+      name: "Automotive Plastic Trim Design",
+      description: "Specialized course in automotive plastic trim design covering CAD methodology and industrial projects.",
+      image: "/images/courses/automotive.png",
+      duration: "100 Hours / 3 Months",
+      rating: "4.8",
+      category: "Automotive Design",
+      features: ["100% Job Assistance", "Certificate: Yes"],
+     
+    },
+    {
+      id: 8,
+      name: "Automotive BIW Product Design",
+      description: "Body-in-White product design course covering BIW methodology, materials, and assembly design projects.",
+      image: "/images/courses/biwdesign.jpg",
+      duration: "100 Hours / 3 Months",
+      rating: "4.8",
+      category: "Automotive Design",
+      features: ["100% Job Assistance", "Certificate: Yes"],
+      
+    },
+    {
+      id: 9,
+      name: "Press Tool Design",
+      description: "Comprehensive press tool design course covering BIW methodology, CAE analysis, and placement preparation.",
+      image: "/images/courses/presstool.jpg",
+      duration: "100 Hours / 3 Months",
+      rating: "4.8",
+      category: "Tool Design",
+      features: ["100% Job Assistance", "Certificate: Yes"],
+     
+    },
+    {
+      id: 10,
+      name: "Reverse Engineering",
+      description: "Specialized reverse engineering course covering automotive body design, BIW methodology, and project-based learning.",
+      image: "/images/courses/reverseengineering.jpg",
+      duration: "100 Hours / 3 Months",
+      rating: "4.8",
+      category: "Engineering",
+      features: ["100% Job Assistance", "Certificate: Yes"],
+     
+    },
+    // NEW COURSES ADDED HERE
+    {
+      id: 11,
+      name: "German Language",
+      description: "Comprehensive German language course covering grammar, conversation, reading, writing, and real-life interactions. Designed for beginners to intermediate learners, with a focus on both everyday communication and professional use.",
+      image: "/images/courses/german.png", // Update image path as needed
+      duration: "100 Hours / 3 Months",
+      rating: "4.5", // Set as per your institute's standards
+      category: "Language",
+      features: ["Certificate: Yes", "Native Speaker Faculty", "Interactive Classes", "Placement Assistance"],
+     
+    },
+    {
+      id: 12,
+      name: "Japanese Language",
+      description: "Comprehensive Japanese language course for beginners, focusing on speaking, reading, writing, and cultural understanding. Prepares students for JLPT (Japanese Language Proficiency Test) and enhances career prospects in Japan and Japanese firms.",
+      image: "/images/courses/japanese.jpg", // Update image path as needed
+      duration: "100 Hours / 3 Months",
+      rating: "4.5", // Set as per your institute's standards
+      category: "Language",
+      features: ["Certificate: Yes", "Native Speaker Faculty", "Interactive Classes", "Placement Assistance"],
+      
     }
   ],
 
@@ -415,7 +504,7 @@ export const siteData = {
   abouthero: {
   heading: "We Always Ensure Best Course For Your Learning",
   paragraphs: [
-    "Voiture Coaching Institute is one of the best IT Training & Staffing Services Provider in Pune, dedicated to introducing new skills and talent into IT Sector. We are a proudly unique company with services covering all levels of IT recruitment and skill development.",
+    "Voiture Career Institute is one of the best IT Training & Staffing Services Provider in Pune, dedicated to introducing new skills and talent into IT Sector. We are a proudly unique company with services covering all levels of IT recruitment and skill development.",
     "Since 2020, we have helped over 1000 people launch their careers in the Tech and Digital Industries and supported their further development with our blend of training and recruitment services.",
     "In this expeditious environment, our team has an optimum blend of Experienced Engineers, Business Developers and Human Resourcing Experts with cumulative experience of over 3-4 decades, who are committed to providing high-quality, hands-on learning experiences of aspiring engineers and IT professionals."
   ],
@@ -438,9 +527,7 @@ export const siteData = {
   ]
 },
 
-
-
-  // About Us Data
+// About Us Data
    about: {
     title: "We Always Ensure Best Course For Your Learning",
     description: "Voiture career institute We are a “Best in Class” institute in Pune that offers multiple top-notch courses. Our team has an optimum blend of Experienced Engineers, Business Developers and Human Resourcing Experts with cumulative experience of over 3-4 decades, who contribute to Customer Success by Providing again the best in Class People, Processes & Solutions.",
@@ -503,35 +590,35 @@ export const siteData = {
     name: "Arun Rana",
     image: "/images/testimonials/arun kumar.JPG",
     rating: 5,
-    text: "Great place to learn! Voiture Coaching Institute has top-quality courses and a strong focus on practical learning. I feel more confident in my tech skills now!"
+    text: "Great place to learn! Voiture CareerInstitute has top-quality courses and a strong focus on practical learning. I feel more confident in my tech skills now!"
   },
   {
     id: 2,
     name: "Akshay Mane",
     image: "/images/testimonials/akshay mane.JPG",
     rating: 5,
-    text: "Highly recommend Voiture Coaching Institute for anyone serious about learning technology. The lessons are clear, and the practical sessions are top-notch. Worth every penny!"
+    text: "Highly recommend Voiture CareerInstitute for anyone serious about learning technology. The lessons are clear, and the practical sessions are top-notch. Worth every penny!"
   },
   {
     id: 3,
     name: "Rajesh Raut",
     image: "/images/testimonials/rajesh raut.JPG",
     rating: 5,
-    text: "I had a great experience at Voiture Coaching Institute. The courses are practical and industry-oriented. The instructors are friendly and always ready to help."
+    text: "I had a great experience at Voiture CareerInstitute. The courses are practical and industry-oriented. The instructors are friendly and always ready to help."
   },
   {
     id: 4,
     name: "Rahis Shaikh",
     image: "/images/testimonials/rahis shaikh.JPG",
     rating: 5,
-    text: "The coaching center emphasizes hands-on learning, particularly for mechanical engineering students. The support staff is responsive and helpful."
+    text: "The Careercenter emphasizes hands-on learning, particularly for mechanical engineering students. The support staff is responsive and helpful."
   },
   {
     id: 5,
     name: "Ajit Gaikwade",
     image: "/images/testimonials/ajit gaikwade.JPG",
     rating: 5,
-    text: "A fantastic learning experience! The courses at Voiture Coaching Institute are well-structured, and the support from the staff is outstanding. My technical skills have improved tremendously."
+    text: "A fantastic learning experience! The courses at Voiture CareerInstitute are well-structured, and the support from the staff is outstanding. My technical skills have improved tremendously."
   },
   {
     id: 6,
@@ -545,65 +632,24 @@ export const siteData = {
     name: "Rajesh Chaudhary",
     image: "/images/testimonials/rajesh chaudhari.JPG",
     rating: 5,
-    text: "The coaching center provides a well-rounded curriculum, designed to cover both foundational and advanced topics in mechanical engineering and IT."
+    text: "The Careercenter provides a well-rounded curriculum, designed to cover both foundational and advanced topics in mechanical engineering and IT."
   },
   {
     id: 1,
     name: "Arun Rana",
     image: "/images/testimonials/arun kumar.JPG",
     rating: 5,
-    text: "Great place to learn! Voiture Coaching Institute has top-quality courses and a strong focus on practical learning. I feel more confident in my tech skills now!"
+    text: "Great place to learn! Voiture CareerInstitute has top-quality courses and a strong focus on practical learning. I feel more confident in my tech skills now!"
   },
   {
     id: 2,
     name: "Akshay Mane",
     image: "/images/testimonials/akshay mane.JPG",
     rating: 5,
-    text: "Highly recommend Voiture Coaching Institute for anyone serious about learning technology. The lessons are clear, and the practical sessions are top-notch. Worth every penny!"
+    text: "Highly recommend Voiture CareerInstitute for anyone serious about learning technology. The lessons are clear, and the practical sessions are top-notch. Worth every penny!"
   },
   
 ],
-
-
-  // Gallery Data
-  gallery: [
-    {
-      id: 1,
-      image: "/images/gallery/gallery1.jpg",
-      title: "Modern Classrooms",
-      category: "Infrastructure"
-    },
-    {
-      id: 2,
-      image: "/images/gallery/gallery2.jpg",
-      title: "Computer Laboratory",
-      category: "Facilities"
-    },
-    {
-      id: 3,
-      image: "/images/gallery/gallery3.jpg",
-      title: "Library",
-      category: "Facilities"
-    },
-    {
-      id: 4,
-      image: "/images/gallery/gallery1.jpg",
-      title: "Programming Lab",
-      category: "Technology"
-    },
-    {
-      id: 5,
-      image: "/images/gallery/gallery2.jpg",
-      title: "Study Hall",
-      category: "Infrastructure"
-    },
-    {
-      id: 6,
-      image: "/images/gallery/gallery3.jpg",
-      title: "Conference Room",
-      category: "Infrastructure"
-    }
-  ],
 
   // Navigation Data
   navigation: [

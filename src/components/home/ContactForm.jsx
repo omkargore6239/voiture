@@ -244,7 +244,7 @@ const ContactForm = () => {
           <div className="rounded-lg shadow-sm p-5 mb-2 border-l-4 border-red-600 bg-white-50">
             <div className="flex items-center mb-1">
               <Mail size={18} className="mr-2 text-red-600" />
-              <span className="font-semibold text-gray-800">Email (Both Branches)</span>
+              <span className="font-semibold text-gray-800">Email</span>
             </div>
             <div className="text-gray-700">{siteData.contact.email}</div>
             <span className="ml-7 text-xs text-gray-500">We'll respond within 24 hours</span>

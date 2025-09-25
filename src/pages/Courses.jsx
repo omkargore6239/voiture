@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Clock, Users, Star, BookOpen, Award, CheckCircle, Briefcase, FileText } from 'lucide-react';
+import { Clock, Users, Star, BookOpen, Award, CheckCircle, Briefcase, FileText, Download } from 'lucide-react';
 import { siteData } from '../data/siteData';
 
 const CourseCard = ({ course, index }) => {
@@ -34,6 +34,14 @@ const CourseCard = ({ course, index }) => {
 
   const handleEnrollClick = () => {
     navigate('/contact');
+  };
+
+  // Handle WhatsApp syllabus download
+  const handleDownloadSyllabus = () => {
+    const phoneNumber = siteData.contact.phone.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+    const message = `Hi, I'm interested in the ${name} course. Could you please send me the detailed syllabus? Thank you!`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   // Determine animation direction - alternating wave pattern
@@ -84,7 +92,7 @@ const CourseCard = ({ course, index }) => {
             }`}
             style={{ transitionDelay: '300ms' }}
           >
-            <h3 className="text-xl font-bold text-gray-800 leading-tight">{name} -</h3>
+            <h3 className="text-xl font-bold text-gray-800 leading-tight">{name}</h3>
             
             {/* Rating */}
             <div className="flex items-center gap-2">
@@ -128,6 +136,27 @@ const CourseCard = ({ course, index }) => {
               <span className="font-medium">Certificate: {certificate}</span>
             </div>
           </div>
+
+          {/* Action Buttons */}
+          <div 
+            className={`flex flex-col sm:flex-row gap-3 pt-4 transition-all duration-[500ms] ease-out ${
+              isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-4'
+            }`}
+            style={{ transitionDelay: '600ms' }}
+          >
+            {/* Download Syllabus Button */}
+            <button
+              onClick={handleDownloadSyllabus}
+              className="flex items-center justify-center gap-2 px-4 py-2.5 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg"
+            >
+              <Download className="w-4 h-4" />
+              Download Syllabus
+            </button>
+
+            
+          </div>
         </div>
 
         {/* Right Side - Course Highlights */}
@@ -141,7 +170,7 @@ const CourseCard = ({ course, index }) => {
         >
           {/* Course Highlights Header */}
           <h4 className="text-lg font-bold text-gray-800">
-            Course Highlights-
+            Course Highlights
           </h4>
 
           {/* Highlights Grid - 2 columns as shown in image */}

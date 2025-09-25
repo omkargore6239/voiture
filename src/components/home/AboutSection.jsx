@@ -49,7 +49,7 @@ const AboutSection = () => {
           >
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-                About <span className="text-gradient">Voiture Coaching</span>
+                About <span className="text-gradient">Voiture Institute</span>
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
                 {siteData.about.description}

@@ -5,7 +5,7 @@ import { siteData } from '../../data/siteData';
 const CourseCard = ({ course, index, isVisible }) => {
   // Simplified animation direction based on position
   const getAnimationDirection = (index) => {
-    const row = Math.floor(index / 4); // Assuming 4 columns in lg screens now
+    const row = Math.floor(index / 4); // Assuming 4 columns in xl screens
     const col = index % 4;
     
     // Alternating animation directions for variety
@@ -37,7 +37,7 @@ const CourseCard = ({ course, index, isVisible }) => {
     <Link
       to="/courses"
       className={`block bg-white rounded-xl shadow-lg hover:shadow-xl group hover:scale-105 transition-all duration-1000 ease-out cursor-pointer ${getTransformClass(direction, isVisible)}`}
-      style={{ transitionDelay: `${200 + index * 150}ms` }}
+      style={{ transitionDelay: `${200 + index * 100}ms` }}
     >
       {/* Card Image */}
       <div className="relative overflow-hidden rounded-t-xl">
@@ -49,7 +49,7 @@ const CourseCard = ({ course, index, isVisible }) => {
               ? 'scale-100 opacity-100' 
               : 'scale-110 opacity-0'
           }`}
-          style={{ transitionDelay: `${300 + index * 150}ms` }}
+          style={{ transitionDelay: `${300 + index * 100}ms` }}
           onError={(e) => {
             // Fallback image if original fails to load
             e.target.src = `https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80`;
@@ -79,7 +79,7 @@ const CourseCard = ({ course, index, isVisible }) => {
         </div>
       </div>
       
-      {/* Course Name */}
+      {/* Course Name Only */}
       <div className="p-6">
         <h3 
           className={`text-xl font-bold text-gray-800 text-center transition-all duration-800 ease-out group-hover:text-primary-600 ${
@@ -87,21 +87,21 @@ const CourseCard = ({ course, index, isVisible }) => {
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-4'
           }`}
-          style={{ transitionDelay: `${400 + index * 150}ms` }}
+          style={{ transitionDelay: `${400 + index * 100}ms` }}
         >
           {course.name}
         </h3>
         
         {/* Click indicator text */}
         <p 
-          className={`text-sm text-gray-500 text-center mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300 ${
+          className={`text-sm text-primary-600 font-medium text-center mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300 ${
             isVisible 
               ? 'translate-y-0' 
               : 'translate-y-2'
           }`}
-          style={{ transitionDelay: `${500 + index * 150}ms` }}
+          style={{ transitionDelay: `${500 + index * 100}ms` }}
         >
-          Click to explore courses
+          Click to explore courses →
         </p>
       </div>
     </Link>
@@ -139,8 +139,8 @@ const PopularCourses = () => {
     };
   }, []);
 
-  // Display up to 4 courses (add one more from existing courses)
-  const coursesToDisplay = siteData.popularCourses.slice(0, 4);
+  // Display ALL courses from popularCourses array
+  const coursesToDisplay = siteData.popularCourses;
 
   return (
     <section className="section-padding bg-gray-50 overflow-hidden">
@@ -167,13 +167,13 @@ const PopularCourses = () => {
             }`}
             style={{ transitionDelay: '200ms' }}
           >
-            Discover our most sought-after courses designed to help you achieve your career goals.
+            Discover our comprehensive range of courses designed to help you achieve your career goals.
           </p>
         </div>
         
-        {/* Courses Grid - Now with 4 columns and clickable cards */}
+        {/* Courses Grid - Clean layout with only name and image */}
         <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12"
           data-animate="courses"
         >
           {coursesToDisplay.map((course, index) => (
@@ -199,7 +199,7 @@ const PopularCourses = () => {
             to="/courses" 
             className="btn-outline hover:scale-105 transition-all duration-300 inline-block px-8 py-3 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-600 hover:text-white"
           >
-            View All Courses
+            View All Course Details
           </Link>
         </div>
       </div>
