@@ -42,7 +42,7 @@ const Footer = () => {
               </div>
               <h3 className="text-lg sm:text-xl lg:text-lg xl:text-xl font-bold">{siteData.siteName}</h3>
             </div>
-            <p className="text-gray-300 text-sm sm:text-base lg:text-sm xl:text-base leading-relaxed line-clamp-3 sm:line-clamp-none lg:line-clamp-4 xl:line-clamp-none">
+            <p className="text-gray-300 text-sm sm:text-base lg:text-sm xl:text-base leading-relaxed line-clamp-5 sm:line-clamp-none lg:line-clamp-4 xl:line-clamp-none">
               {siteData.description}
             </p>
             <div className="flex space-x-3 sm:space-x-4 lg:space-x-3">

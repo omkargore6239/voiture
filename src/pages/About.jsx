@@ -136,6 +136,15 @@ const About = () => {
                   e.target.src = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
                 }}
               />
+              <br />
+               <img
+                src="/aboutus2.jpg"
+                alt="About Us"
+                className="w-full h-48 md:h-64 lg:h-96 object-cover rounded-lg shadow-lg"
+                onError={(e) => {
+                  e.target.src = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+                }}
+              />
             </div>
           </div>
         </div>

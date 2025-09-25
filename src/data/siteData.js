@@ -47,66 +47,6 @@ export const siteData = {
   // Popular Courses Data
   popularCourses: [
     {
-      id: 1,
-      name: "Java Full Stack",
-      description: "Comprehensive Java programming course covering basic to advanced concepts with web development and modern tools.",
-      image: "/images/courses/java.png",
-      duration: "100 Hours / 3 Months",
-      rating: "4.8",
-      features: ["100% Job Assistance", "Certificate: Yes", "Expert Faculty", "Live Projects"]
-    },
-    {
-      id: 2,
-      name: "Power BI",
-      description: "Complete Power BI training covering reports, dashboards, data modeling and cloud operations.",
-      image: "/images/courses/powerbi.png",
-      duration: "100 Hours / 3 Months",
-      rating: "4.8",
-      features: ["100% Job Assistance", "Certificate: Yes", "Hands-on Practice", "Industry Projects"]
-    },
-    {
-      id: 3,
-      name: "Data Science",
-      description: "Comprehensive data science program covering Python, machine learning, and big data fundamentals.",
-      image: "/images/courses/datascience.jpg",
-      duration: "100 Hours / 3 Months",
-      rating: "4.8",
-      features: ["100% Job Assistance", "Certificate: Yes", "Real Projects", "Career Guidance"]
-    },
-     {
-      id: 4,
-      name: "Full Stack Python",
-      description: "Complete Python development course covering Django framework and web development fundamentals.",
-      image: "/images/courses/python.jpg",
-      duration: "100 Hours / 3 Months",
-      rating: "4.8",
-      category: "Programming",
-      features: ["100% Job Assistance", "Certificate: Yes"],
-      
-    },
-    {
-      
-      id: 5,
-      name: "Digital Marketing",
-      description: "Comprehensive digital marketing course covering SEO, social media marketing, and paid advertising strategies.",
-      image: "/images/courses/digitalmarketing.jpg",
-      duration: "100 Hours / 3 Months",
-      rating: "4.8",
-      category: "Marketing",
-      features: ["100% Job Assistance", "Certificate: Yes"],
-    }
-    ,{
-      id: 6,
-      name: "Website Design & Development",
-      description: "Complete web design and development course covering HTML, CSS, JavaScript and responsive design principles.",
-      image: "/images/courses/webdevelopment.jpeg",
-      duration: "100 Hours / 3 Months",
-      rating: "4.8",
-      category: "Web Development",
-      features: ["100% Job Assistance", "Certificate: Yes"],
-      
-    },
-    {
       id: 7,
       name: "Automotive Plastic Trim Design",
       description: "Specialized course in automotive plastic trim design covering CAD methodology and industrial projects.",
@@ -129,6 +69,17 @@ export const siteData = {
       
     },
     {
+      id: 10,
+      name: "Reverse Engineering",
+      description: "Specialized reverse engineering course covering automotive body design, BIW methodology, and project-based learning.",
+      image: "/images/courses/reverseengineering.jpg",
+      duration: "100 Hours / 3 Months",
+      rating: "4.8",
+      category: "Engineering",
+      features: ["100% Job Assistance", "Certificate: Yes"],
+     
+    },
+     {
       id: 9,
       name: "Press Tool Design",
       description: "Comprehensive press tool design course covering BIW methodology, CAE analysis, and placement preparation.",
@@ -140,16 +91,72 @@ export const siteData = {
      
     },
     {
-      id: 10,
-      name: "Reverse Engineering",
-      description: "Specialized reverse engineering course covering automotive body design, BIW methodology, and project-based learning.",
-      image: "/images/courses/reverseengineering.jpg",
+      id: 6,
+      name: "Website Design & Development",
+      description: "Complete web design and development course covering HTML, CSS, JavaScript and responsive design principles.",
+      image: "/images/courses/webdevelopment.jpeg",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
-      category: "Engineering",
+      category: "Web Development",
       features: ["100% Job Assistance", "Certificate: Yes"],
-     
+      
     },
+    {
+      id: 3,
+      name: "Data Science",
+      description: "Comprehensive data science program covering Python, machine learning, and big data fundamentals.",
+      image: "/images/courses/datascience.jpg",
+      duration: "100 Hours / 3 Months",
+      rating: "4.8",
+      features: ["100% Job Assistance", "Certificate: Yes", "Real Projects", "Career Guidance"]
+    },
+    {
+      id: 4,
+      name: "Full Stack Python",
+      description: "Complete Python development course covering Django framework and web development fundamentals.",
+      image: "/images/courses/python.jpg",
+      duration: "100 Hours / 3 Months",
+      rating: "4.8",
+      category: "Programming",
+      features: ["100% Job Assistance", "Certificate: Yes"],
+      
+    },
+    {
+      id: 1,
+      name: "Java Full Stack",
+      description: "Comprehensive Java programming course covering basic to advanced concepts with web development and modern tools.",
+      image: "/images/courses/java.png",
+      duration: "100 Hours / 3 Months",
+      rating: "4.8",
+      features: ["100% Job Assistance", "Certificate: Yes", "Expert Faculty", "Live Projects"]
+    },
+    {
+      
+      id: 5,
+      name: "Digital Marketing",
+      description: "Comprehensive digital marketing course covering SEO, social media marketing, and paid advertising strategies.",
+      image: "/images/courses/digitalmarketing.jpg",
+      duration: "100 Hours / 3 Months",
+      rating: "4.8",
+      category: "Marketing",
+      features: ["100% Job Assistance", "Certificate: Yes"],
+    }
+    ,
+    {
+      id: 2,
+      name: "Power BI",
+      description: "Complete Power BI training covering reports, dashboards, data modeling and cloud operations.",
+      image: "/images/courses/powerbi.png",
+      duration: "100 Hours / 3 Months",
+      rating: "4.8",
+      features: ["100% Job Assistance", "Certificate: Yes", "Hands-on Practice", "Industry Projects"]
+    },
+    
+     
+    
+    
+   
+    
     // NEW COURSES ADDED HERE
     {
       id: 11,
