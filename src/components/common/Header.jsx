@@ -27,29 +27,54 @@ const Header = () => {
       {/* Top Bar */}
       <div className="bg-primary-600 text-white py-2">
         <div className="container-custom">
-          <div className="flex justify-between items-center gap-6 text-sm md:text-base">
-            {/* Email (Left) */}
-            <a
-              href={`mailto:${siteData.contact.email}`}
-              className="flex items-center gap-2 hover:underline"
-            >
-              <Mail size={16} />
-              <span>{siteData.contact.email}</span>
-            </a>
+         <div className="flex justify-between items-center gap-6 text-sm md:text-base">
+  {/* Email (Left) */}
+  <a
+    href={`mailto:${siteData.contact.email}`}
+    className="flex items-center gap-2 hover:underline"
+  >
+    <Mail size={16} />
+    <span>{siteData.contact.email}</span>
+  </a>
 
-            {/* WhatsApp (Right) */}
-            <a
-              href={`https://wa.me/${siteData.contact.phone2.replace(/\\D/g, '')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:underline"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="16" height="16">
-                <path d="M20.52 3.48A11.48 11.48 0 0012.042.006c-6.355 0-11.5 5.14-11.5 11.5a11.45 11.45 0 001.61 5.77l-1.78 6.49 6.65-1.74c2.07 1.12 4.5 1.65 6.9 1.5.16 0 .3-.06.42-.16a11.49 11.49 0 005.16-6.34 11.48 11.48 0 00-5.448-15.53zm-6.48 16a7.377 7.377 0 01-4.022-1.227L8.1 18l-1.14-3.375 1.13-1.12-.92-.92-3.375-1.13 2.518-1.68a7.371 7.371 0 113.72 8.558zm3.19-3.52c-.04-.02-2.3-1.137-2.65-1.27-.35-.13-.6-.197-.85.197-.247.393-1.015 1.27-1.244 1.527-.23.256-.468.287-.872.097a10.82 10.82 0 01-2.012-1.2c-.592-.52-.997-1.17-1.113-1.464-.115-.293-.012-.487.086-.657.087-.174.195-.404.292-.606.1-.202.132-.334.2-.557.065-.223.033-.41-.018-.57-.05-.16-.85-2.05-1.168-2.8s-.658-.648-.902-.7c-.242-.05-.522-.04-.802-.04-.277 0-.73.1-1.115.48-.385.378-1.454 1.42-1.454 3.46s1.49 4.02 1.696 4.3c.2.282 2.935 4.485 7.21 6.17a11.457 11.457 0 004.617.83c2.88 0 4.430-1.99 4.893-3.9.463-1.9-.695-3.55-1.986-4.02z"/>
-              </svg>
-              <span>{siteData.contact.phone2}</span>
-            </a>
-          </div>
+  {/* Phone Calls (Right) */}
+  <div className="flex items-center gap-4">
+    {/* First Phone */}
+    <a
+      href={`tel:${siteData.contact.phone2.replace(/\D/g, '')}`}
+      className="flex items-center gap-2 hover:underline"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        width="16"
+        height="16"
+      >
+        <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.3 21 3 13.7 3 5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.58.09.34.02.71-.24 1.01l-2.21 2.2z" />
+      </svg>
+      <span>{siteData.contact.phone2}</span>
+    </a>
+
+    {/* Second Phone */}
+    <a
+      href={`tel:${siteData.contact.phone.replace(/\D/g, '')}`}
+      className="flex items-center gap-2 hover:underline"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        width="16"
+        height="16"
+      >
+        <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.3 21 3 13.7 3 5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.58.09.34.02.71-.24 1.01l-2.21 2.2z" />
+      </svg>
+      <span>{siteData.contact.phone}</span>
+    </a>
+  </div>
+</div>
+
         </div>
       </div>
 

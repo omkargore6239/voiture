@@ -13,6 +13,21 @@ const Footer = () => {
     contact: false
   });
 
+  // Add the new courses to the existing popular courses
+  const additionalCourses = [
+    { id: 'plastic-trims', name: 'Plastic Trims Design' },
+    { id: 'biw-product', name: 'BIW Product Design' },
+    { id: 'cad-design', name: 'CAD Design' }
+  ];
+
+  // Filter out Data Science & Power BI courses and combine with new ones
+  const filteredCourses = siteData.popularCourses.filter(course => 
+    !course.name.toLowerCase().includes('data science') && 
+    !course.name.toLowerCase().includes('power bi')
+  );
+  
+  const allPopularCourses = [...filteredCourses, ...additionalCourses];
+
   const toggleSection = (section) => {
     setOpenSections(prev => ({
       ...prev,
@@ -122,7 +137,7 @@ const Footer = () => {
                 openSections.courses ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
               }`}>
                 <ul className="space-y-2 pt-2">
-                  {siteData.popularCourses.map((course) => (
+                  {allPopularCourses.map((course) => (
                     <li key={course.id}>
                       <Link
                         to="/courses"
@@ -140,7 +155,7 @@ const Footer = () => {
             <div className="hidden lg:block">
               <h3 className="text-lg font-semibold mb-4">Popular Courses</h3>
               <ul className="space-y-2">
-                {siteData.popularCourses.map((course) => (
+                {allPopularCourses.map((course) => (
                   <li key={course.id}>
                     <Link
                       to="/courses"

@@ -167,7 +167,7 @@ const PopularCourses = () => {
             }`}
             style={{ transitionDelay: '200ms' }}
           >
-            Discover our most sought-after courses designed to help you achieve your academic goals.
+            Discover our most sought-after courses designed to help you achieve your career goals.
           </p>
         </div>
         

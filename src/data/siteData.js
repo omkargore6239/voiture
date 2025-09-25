@@ -2,12 +2,12 @@ export const siteData = {
   // Site Information
   siteName: "Voiture Coaching Institute",
   tagline: "Excellence in Education",
-  description: "Leading coaching institute providing quality education and guidance for competitive exams and career development.",
+  description: "Voiture Institute is a leading provider of IT Training & Recruitment services dedicated to introducing new skills and talent in IT Sector. We are a proudly unique company with services covering all levels of IT recruitment and skill development.",
 
   // Contact Information
   contact: {
-    phone: "+91 9356418451",
-    phone2: "+91 9307301569",
+    phone: "+91 9307301569",
+    phone2: "+91 9356418451",
     email: "voiturecareerinstitute@gmail.com",
     address: [
       "Survey no. 184/A/2 Shinde wasti Ravet Haveli, Pune Dehu Road (CB) 412101",

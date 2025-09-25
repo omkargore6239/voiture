@@ -366,7 +366,7 @@ const Contact = () => {
                   <div className="flex items-center space-x-3">
                     <Mail className="text-primary-600 flex-shrink-0" size={18} />
                     <div>
-                      <h5 className="font-semibold text-gray-800 text-sm md:text-base">Email (Both Branches)</h5>
+                      <h5 className="font-semibold text-gray-800 text-sm md:text-base">Email</h5>
                       <p className="text-gray-600 text-xs md:text-sm">{siteData.contact.email}</p>
                       <p className="text-xs text-gray-500">We'll respond within 24 hours</p>
                     </div>
@@ -385,16 +385,16 @@ const Contact = () => {
               >
                 <div className="flex items-center mb-3 md:mb-4">
                   <Clock className="mr-2 md:mr-3" size={20} />
-                  <h3 className="text-lg md:text-xl font-semibold">Office Hours (Both Branches)</h3>
+                  <h3 className="text-lg md:text-xl font-semibold">Office Hours</h3>
                 </div>
                 <div className="space-y-2 md:space-y-3">
                   <div className="flex justify-between items-center text-sm md:text-base">
                     <span>Monday - Friday:</span>
-                    <span className="font-semibold">9:00 AM - 6:00 PM</span>
+                    <span className="font-semibold">9:00 AM - 9:00 PM</span>
                   </div>
                   <div className="flex justify-between items-center text-sm md:text-base">
                     <span>Saturday:</span>
-                    <span className="font-semibold">9:00 AM - 4:00 PM</span>
+                    <span className="font-semibold">9:00 AM - 9:00 PM</span>
                   </div>
                   <div className="flex justify-between items-center text-sm md:text-base">
                     <span>Sunday:</span>

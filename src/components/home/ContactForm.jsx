@@ -253,10 +253,10 @@ const ContactForm = () => {
           <div className="rounded-lg shadow-sm p-4 mt-2 border-l-4 border-red-600 bg-gradient-to-r from-red-600/90 to-red-600/90 text-white">
             <div className="flex items-center mb-2">
               <svg width={22} height={22} className="text-white mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              <span className="font-bold text-lg">Office Hours (Both Branches)</span>
+              <span className="font-bold text-lg">Office Hours</span>
             </div>
-            <div className="flex justify-between py-1"><span>Monday - Friday:</span><span>9:00 AM - 6:00 PM</span></div>
-            <div className="flex justify-between py-1"><span>Saturday:</span><span>9:00 AM - 4:00 PM</span></div>
+            <div className="flex justify-between py-1"><span>Monday - Friday:</span><span>9:00 AM - 9:00 PM</span></div>
+            <div className="flex justify-between py-1"><span>Saturday:</span><span>9:00 AM - 9:00 PM</span></div>
             <div className="flex justify-between py-1"><span>Sunday:</span><span>Closed</span></div>
             <div className="mt-2 text-xs font-semibold">Emergency contact available 24/7</div>
           </div>
