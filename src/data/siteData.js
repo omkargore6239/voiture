@@ -537,7 +537,7 @@ export const siteData = {
 // About Us Data
    about: {
     title: "We Always Ensure Best Course For Your Learning",
-    description: "Voiture career institute We are a “Best in Class” institute in Pune that offers multiple top-notch courses. Our team has an optimum blend of Experienced Engineers, Business Developers and Human Resourcing Experts with cumulative experience of over 3-4 decades, who contribute to Customer Success by Providing again the best in Class People, Processes & Solutions.",
+    description: "We are a “Best in Class” institute in Pune that offers multiple top-notch courses. Our team has an optimum blend of Experienced Engineers, Business Developers and Human Resourcing Experts with cumulative experience of over 3-4 decades, who contribute to Customer Success by Providing again the best in Class People, Processes & Solutions.",
      
     achievements: [
       "Best IT Training Institute in Pune – 2023",

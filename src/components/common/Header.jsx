@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
-      {/* Top Bar - Mobile responsive improvements only */}
+      {/* Top Bar - Phone numbers side by side on all screens */}
       <div className="bg-primary-600 text-white py-2">
         <div className="container-custom">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-6 text-xs sm:text-sm md:text-base">
@@ -37,12 +37,12 @@ const Header = () => {
               <span className="truncate">{siteData.contact.email}</span>
             </a>
 
-            {/* Phone Calls (Right on desktop, full width on mobile) */}
-            <div className="flex flex-col xs:flex-row items-center gap-2 xs:gap-4">
+            {/* Phone Numbers - Always side by side */}
+            <div className="flex items-center gap-3 sm:gap-4">
               {/* First Phone */}
               <a
                 href={`tel:${siteData.contact.phone2.replace(/\D/g, '')}`}
-                className="flex items-center gap-2 hover:underline"
+                className="flex items-center gap-1 sm:gap-2 hover:underline"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@ const Header = () => {
               {/* Second Phone */}
               <a
                 href={`tel:${siteData.contact.phone.replace(/\D/g, '')}`}
-                className="flex items-center gap-2 hover:underline"
+                className="flex items-center gap-1 sm:gap-2 hover:underline"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -198,24 +198,25 @@ const Header = () => {
                 </div>
               </nav>
 
-              {/* Contact Info & Social Media - Enhanced mobile section */}
+              {/* Contact Info & Social Media - Phone numbers side by side */}
               <div className="border-t border-gray-200 p-4 sm:p-6 bg-gray-50">
                 {/* Contact Info */}
                 <div className="space-y-3 mb-4">
-                  <div className="flex flex-col space-y-2">
+                  {/* Phone Numbers - Side by side in mobile menu too */}
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
                     <a
                       href={`tel:${siteData.contact.phone.replace(/\D/g, '')}`}
-                      className="flex items-center gap-3 text-gray-600 hover:text-primary-600 transition-colors touch-manipulation py-2"
+                      className="flex items-center gap-2 text-gray-600 hover:text-primary-600 transition-colors touch-manipulation py-2 flex-1"
                     >
                       <Phone size={18} />
-                      <span className="text-sm sm:text-base">{siteData.contact.phone}</span>
+                      <span className="text-sm sm:text-base whitespace-nowrap">{siteData.contact.phone}</span>
                     </a>
                     <a
                       href={`tel:${siteData.contact.phone2.replace(/\D/g, '')}`}
-                      className="flex items-center gap-3 text-gray-600 hover:text-primary-600 transition-colors touch-manipulation py-2"
+                      className="flex items-center gap-2 text-gray-600 hover:text-primary-600 transition-colors touch-manipulation py-2 flex-1"
                     >
                       <Phone size={18} />
-                      <span className="text-sm sm:text-base">{siteData.contact.phone2}</span>
+                      <span className="text-sm sm:text-base whitespace-nowrap">{siteData.contact.phone2}</span>
                     </a>
                   </div>
                   
@@ -268,4 +269,3 @@ const Header = () => {
 };
 
 export default Header;
-  
