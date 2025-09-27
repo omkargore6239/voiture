@@ -33,6 +33,7 @@ const ContactForm = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const [visibleElements, setVisibleElements] = useState(new Set());
   const observerRef = useRef(null);
@@ -62,23 +63,63 @@ const ContactForm = () => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setShowSuccess(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        branch: '',
-        course: '',
-        subject: '',
-        message: ''
+    setShowError(false);
+    setShowSuccess(false);
+
+    // Create FormData object
+    const form = new FormData();
+    
+    // Add Web3Forms access key - REPLACE WITH YOUR ACTUAL ACCESS KEY
+    form.append("access_key", "493fc4a5-ff44-4e25-99bc-32e8d33e0a4e");
+    
+    // Add form data
+    form.append("name", formData.name);
+    form.append("email", formData.email);
+    form.append("phone", formData.phone);
+    form.append("branch", formData.branch);
+    form.append("course", formData.course);
+    form.append("subject", formData.subject);
+    form.append("message", formData.message);
+    
+    // Add additional fields for better email formatting
+    form.append("from_name", "Contact Form - " + siteData.siteName || "Contact Form");
+    form.append("replyto", formData.email);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: form
       });
-      setTimeout(() => setShowSuccess(false), 2000);
-    }, 1300);
+
+      const data = await response.json();
+
+      if (data.success) {
+        setShowSuccess(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          branch: '',
+          course: '',
+          subject: '',
+          message: ''
+        });
+        setTimeout(() => setShowSuccess(false), 4000);
+      } else {
+        console.error("Error:", data);
+        setShowError(true);
+        setTimeout(() => setShowError(false), 4000);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setShowError(true);
+      setTimeout(() => setShowError(false), 4000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -194,7 +235,7 @@ const ContactForm = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex items-center justify-center py-3 text-base font-semibold rounded-md transition-all bg-gradient-to-r from-red-600 to-red-600 text-white hover:from-red-600 hover:to-red-600"
+              className="w-full flex items-center justify-center py-3 text-base font-semibold rounded-md transition-all bg-gradient-to-r from-red-600 to-red-600 text-white hover:from-red-600 hover:to-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <svg className="animate-spin w-5 h-5 mr-2 text-white" viewBox="0 0 24 24">
@@ -206,13 +247,25 @@ const ContactForm = () => {
               )}
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
+
             {showSuccess && (
               <div className="flex items-center justify-center mt-4">
-                <div className="animate-success-pop bg-green-100 text-green-700 font-semibold px-3 py-2 rounded flex items-center transition">
+                <div className="animate-success-pop bg-green-100 text-green-700 font-semibold px-4 py-3 rounded-lg flex items-center transition">
                   <svg className="w-5 h-5 mr-2 text-green-500" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
                     <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  Message sent successfully!
+                  Message sent successfully! We'll get back to you soon.
+                </div>
+              </div>
+            )}
+
+            {showError && (
+              <div className="flex items-center justify-center mt-4">
+                <div className="bg-red-100 text-red-700 font-semibold px-4 py-3 rounded-lg flex items-center">
+                  <svg className="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  Failed to send message. Please try again or contact us directly.
                 </div>
               </div>
             )}
@@ -224,7 +277,7 @@ const ContactForm = () => {
           <h3 className="text-2xl font-semibold text-gray-800 mb-2">Our Branches</h3>
           {/* Branch Cards */}
           {branches.map((branch, idx) => (
-            <div key={idx} className={`rounded-lg shadow-sm p-5 mb-2 border-l-4 ${branch.brandColor}`}>
+            <div key={idx} className={`bg-white rounded-lg shadow-sm p-5 mb-2 border-l-4 ${branch.brandColor}`}>
               <div className="flex gap-3 items-center mb-1">
                 {branch.icon}
                 <span className="font-bold text-lg text-gray-800">{branch.label}</span>
@@ -240,8 +293,8 @@ const ContactForm = () => {
               </div>
             </div>
           ))}
-          {/* Email Car d */}
-          <div className="rounded-lg shadow-sm p-5 mb-2 border-l-4 border-red-600 bg-white-50">
+          {/* Email Card */}
+          <div className="bg-white rounded-lg shadow-sm p-5 mb-2 border-l-4 border-red-600">
             <div className="flex items-center mb-1">
               <Mail size={18} className="mr-2 text-red-600" />
               <span className="font-semibold text-gray-800">Email</span>

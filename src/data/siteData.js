@@ -642,19 +642,20 @@ export const siteData = {
     text: "The Careercenter provides a well-rounded curriculum, designed to cover both foundational and advanced topics in mechanical engineering and IT."
   },
   {
-    id: 1,
-    name: "Arun Rana",
-    image: "/images/testimonials/arun kumar.JPG",
+    id: 8,
+    name: "Dhanraj",
+    image: "/images/testimonials/dhanraj.JPG",
     rating: 5,
-    text: "Great place to learn! Voiture CareerInstitute has top-quality courses and a strong focus on practical learning. I feel more confident in my tech skills now!"
-  },
-  {
-    id: 2,
-    name: "Akshay Mane",
-    image: "/images/testimonials/akshay mane.JPG",
-    rating: 5,
-    text: "Highly recommend Voiture CareerInstitute for anyone serious about learning technology. The lessons are clear, and the practical sessions are top-notch. Worth every penny!"
-  },
+    text: "The training experience at Voiture CareerInstitute was fantastic. The mentors are supportive and the real-world projects helped me land my first developer job with confidence!"
+},
+{
+    id: 9,
+    name: "Ahad Mujuwar",
+    image: "/images/testimonials/ahad majuwar.JPG",
+    rating: 4,
+    text: "I really enjoyed the structured curriculum and hands-on approach. The institute provides excellent guidance and resources for anyone starting their tech career."
+}
+
   
 ],
 
