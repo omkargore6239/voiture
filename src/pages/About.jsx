@@ -44,25 +44,32 @@ const About = () => {
       <div className="overflow-hidden">
         <section className="py-8 md:py-16 lg:py-20 bg-gradient-to-r from-red-600 to-red-700 text-white">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
-              About {siteData.siteName}
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12">
+              Authorized License Partner
             </h1>
-            <p className="max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
-              Empowering students since 2022 with quality education, expert guidance, and unwavering support in their academic journey.
-            </p>
             
-            {/* Simple Authorized License Partner Section */}
-            <div className="mt-8 flex flex-col items-center justify-center">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-4 border border-white/20">
-                <p className="text-white font-medium text-base mb-3">Authorized License Partner</p>
+            {/* Partner Logo and Name Section */}
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
+              {/* Circular Logo */}
+              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden">
                 <img
                   src="/images/client/image.png"
-                  alt="Licensed Partner Logo"
-                  className="h-20 md:h-24 w-auto mx-auto"
+                  alt="Sunshine Technologies Logo"
+                  className="w-20 h-20 md:w-28 md:h-28 object-contain"
                   onError={(e) => {
                     e.target.style.display = 'none';
                   }}
                 />
+              </div>
+              
+              {/* Partner Name */}
+              <div className="text-center md:text-left">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+                  Sunshine Technologies
+                </h2>
+                <p className="text-white/90 text-lg md:text-xl mt-2">
+                  Technology Partner
+                </p>
               </div>
             </div>
           </div>
@@ -83,40 +90,39 @@ const About = () => {
         <div className="container mx-auto px-4 text-center">
           <h1
             data-animate="hero"
-            className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 transition-all duration-[800ms] ease-out ${
+            className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12 transition-all duration-[800ms] ease-out ${
               visibleElements.has('hero') ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
             }`}
           >
-            About {siteData.siteName}
+            Authorized License Partner
           </h1>
-          <p
-            data-animate="heroDesc"
-            style={{ transitionDelay: '200ms' }}
-            className={`max-w-3xl mx-auto text-lg md:text-xl leading-relaxed transition-all duration-[700ms] ease-out ${
-              visibleElements.has('heroDesc') ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'
-            }`}
-          >
-            Empowering students since 2020 with quality education, expert guidance, and unwavering support in their career journey.
-          </p>
 
-          {/* Simple Authorized License Partner Section */}
+          {/* Partner Logo and Name Section */}
           <div
-            data-animate="license"
-            style={{ transitionDelay: '400ms' }}
-            className={`mt-8 flex flex-col items-center justify-center transition-all duration-[900ms] ease-out ${
-              visibleElements.has('license') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            data-animate="partner"
+            style={{ transitionDelay: '200ms' }}
+            className={`flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 transition-all duration-[900ms] ease-out ${
+              visibleElements.has('partner') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-4 border border-white/20 shadow-lg">
-              <p className="text-white font-medium text-base mb-3">Authorized License Partner</p>
+            {/* Circular Logo */}
+            <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden">
               <img
                 src="/images/client/image.png"
-                alt="Licensed Partner Logo"
-                className="h-20 md:h-24 w-auto mx-auto filter brightness-110"
+                alt="Sunshine Technologies Logo"
+                className="w-20 h-20 md:w-28 md:h-28 object-contain"
                 onError={(e) => {
                   e.target.style.display = 'none';
                 }}
               />
+            </div>
+            
+            {/* Partner Name */}
+            <div className="text-center md:text-left">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+                Sunshine Technologies
+              </h2>
+              
             </div>
           </div>
         </div>
