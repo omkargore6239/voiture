@@ -22,7 +22,7 @@ const About = () => {
       },
       {
         threshold: 0.1,
-        rootMargin: '0px 0px -30px 0px', // Fixed: Added 'px' to the last value
+        rootMargin: '0px 0px -30px 0px',
       },
     );
 
@@ -50,6 +50,21 @@ const About = () => {
             <p className="max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
               Empowering students since 2022 with quality education, expert guidance, and unwavering support in their academic journey.
             </p>
+            
+            {/* Simple Authorized License Partner Section */}
+            <div className="mt-8 flex flex-col items-center justify-center">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-4 border border-white/20">
+                <p className="text-white font-medium text-base mb-3">Authorized License Partner</p>
+                <img
+                  src="/images/client/image.png"
+                  alt="Licensed Partner Logo"
+                  className="h-20 md:h-24 w-auto mx-auto"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </section>
         <div className="py-16 text-center">
@@ -83,6 +98,27 @@ const About = () => {
           >
             Empowering students since 2020 with quality education, expert guidance, and unwavering support in their career journey.
           </p>
+
+          {/* Simple Authorized License Partner Section */}
+          <div
+            data-animate="license"
+            style={{ transitionDelay: '400ms' }}
+            className={`mt-8 flex flex-col items-center justify-center transition-all duration-[900ms] ease-out ${
+              visibleElements.has('license') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-4 border border-white/20 shadow-lg">
+              <p className="text-white font-medium text-base mb-3">Authorized License Partner</p>
+              <img
+                src="/images/client/image.png"
+                alt="Licensed Partner Logo"
+                className="h-20 md:h-24 w-auto mx-auto filter brightness-110"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -137,7 +173,7 @@ const About = () => {
                 }}
               />
               <br />
-               <img
+              <img
                 src="/aboutus2.jpg"
                 alt="About Us"
                 className="w-full h-48 md:h-64 lg:h-96 object-cover rounded-lg shadow-lg"
@@ -151,7 +187,7 @@ const About = () => {
       </section>
 
       {/* Popular Courses Section */}
-       <StatsSection />
+      <StatsSection />
       <PopularCourses />
       <OurPlacements />
     </div>

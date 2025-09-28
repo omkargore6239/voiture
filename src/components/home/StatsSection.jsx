@@ -32,7 +32,7 @@ const StatsSection = () => {
     {
       id: 'experience',
       icon: Building,
-      count: 7,
+      count: 15,
       suffix: '+',
       label: 'Experience',
       color: 'text-white'
@@ -78,7 +78,7 @@ const StatsSection = () => {
             // Start counter animations with delays
             setTimeout(() => animateCounter(1000, 2000, 'students'), 300);
             setTimeout(() => animateCounter(400, 1800, 'placements'), 600);
-            setTimeout(() => animateCounter(7, 1000, 'experience'), 900);
+            setTimeout(() => animateCounter(15, 1000, 'experience'), 900);
             setTimeout(() => animateCounter(7, 1000, 'faculty'), 1200);
           }
         });

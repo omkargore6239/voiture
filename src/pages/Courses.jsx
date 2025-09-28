@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Clock, Users, Star, BookOpen, Award, CheckCircle, Briefcase, FileText, Download } from 'lucide-react';
+import { Clock, Users, Star, BookOpen, Award, CheckCircle, Briefcase, FileText, Download, Monitor, TrendingUp } from 'lucide-react';
 import { siteData } from '../data/siteData';
 
 const CourseCard = ({ course, index }) => {
@@ -21,7 +21,7 @@ const CourseCard = ({ course, index }) => {
     image = 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173',
     name = 'Course Name',
     category = 'General',
-    description = 'Description not available',
+    // description = 'Description not available',
     duration = 'Duration TBD',
     students = '0',
     features = [],
@@ -50,6 +50,15 @@ const CourseCard = ({ course, index }) => {
   };
 
   const direction = getAnimationDirection(index);
+
+  // Function to get icon for features
+  const getFeatureIcon = (feature) => {
+    if (feature.includes('Job Assistance')) return <Briefcase className="w-4 h-4" />;
+    if (feature.includes('Certificate')) return <FileText className="w-4 h-4" />;
+    if (feature.includes('Basic to Advance')) return <TrendingUp className="w-4 h-4" />;
+    if (feature.includes('Online/Offline')) return <Monitor className="w-4 h-4" />;
+    return <CheckCircle className="w-4 h-4" />;
+  };
 
   return (
     <div 
@@ -127,14 +136,26 @@ const CourseCard = ({ course, index }) => {
               <Clock className="w-4 h-4" />
               <span className="font-medium">Duration: {duration}</span>
             </div>
-            <div className="flex items-center gap-2 text-primary-600">
-              <Briefcase className="w-4 h-4" />
-              <span className="font-medium">{jobAssistance} Job Assistance</span>
-            </div>
-            <div className="flex items-center gap-2 text-primary-600">
-              <FileText className="w-4 h-4" />
-              <span className="font-medium">Certificate: {certificate}</span>
-            </div>
+            
+            {/* Display all features with icons */}
+            {features && features.map((feature, featureIndex) => (
+              <div key={featureIndex} className="flex items-center gap-2 text-primary-600">
+                {getFeatureIcon(feature)}
+                <span className="font-medium">{feature}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Course Description */}
+          <div 
+            className={`transition-all duration-[500ms] ease-out ${
+              isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-4'
+            }`}
+            style={{ transitionDelay: '550ms' }}
+          >
+           
           </div>
 
           {/* Action Buttons */}

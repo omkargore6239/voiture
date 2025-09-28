@@ -50,7 +50,7 @@ export const siteData = {
       id: 7,
       name: "Automotive Plastic Trim Design",
       description: "Specialized course in automotive plastic trim design covering CAD methodology and industrial projects.",
-      image: "/images/courses/automotive.png",
+      image: "/images/courses/new/plastictrim.jpeg",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       category: "Automotive Design",
@@ -61,7 +61,7 @@ export const siteData = {
       id: 8,
       name: "Automotive BIW Product Design",
       description: "Body-in-White product design course covering BIW methodology, materials, and assembly design projects.",
-      image: "/images/courses/biwdesign.jpg",
+      image: "/images/courses/new/biwproductdesign.jpeg",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       category: "Automotive Design",
@@ -83,7 +83,7 @@ export const siteData = {
       id: 9,
       name: "Press Tool Design",
       description: "Comprehensive press tool design course covering BIW methodology, CAE analysis, and placement preparation.",
-      image: "/images/courses/presstool.jpg",
+      image: "/images/courses/new/presstooldesign.webp",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       category: "Tool Design",
@@ -146,7 +146,7 @@ export const siteData = {
       id: 2,
       name: "Power BI",
       description: "Complete Power BI training covering reports, dashboards, data modeling and cloud operations.",
-      image: "/images/courses/powerbi.png",
+      image: "/images/courses/new/bipower.png",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       features: ["100% Job Assistance", "Certificate: Yes", "Hands-on Practice", "Industry Projects"]
@@ -173,7 +173,7 @@ export const siteData = {
       id: 12,
       name: "Japanese Language",
       description: "Comprehensive Japanese language course for beginners, focusing on speaking, reading, writing, and cultural understanding. Prepares students for JLPT (Japanese Language Proficiency Test) and enhances career prospects in Japan and Japanese firms.",
-      image: "/images/courses/japanese.jpg", // Update image path as needed
+      image: "/images/courses/new/japnese.jpg", // Update image path as needed
       duration: "100 Hours / 3 Months",
       rating: "4.5", // Set as per your institute's standards
       category: "Language",
@@ -187,12 +187,12 @@ export const siteData = {
     {
       id: 1,
       name: "JAVA Full Stack",
-      description: "Comprehensive Java programming course covering basic to advanced concepts with web development and modern tools.",
+      // description: "Comprehensive Java programming course covering basic to advanced concepts with web development and modern tools.",
       image: "/images/courses/java.png",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       category: "Programming",
-      features: ["100% Job Assistance", "Certificate: Yes"],
+      features: ["100% Job Assistance", "Certificate: Yes", "Basic to Advance level", "Online/Offline Mode"],
       courseHighlights: [
         "Java Programming: Basic & Advance Java",
         "Web Development",
@@ -213,12 +213,12 @@ export const siteData = {
     {
       id: 2,
       name: "Power BI",
-      description: "Complete Power BI training covering reports, dashboards, data modeling and cloud operations.",
-      image: "/images/courses/powerbi.png",
+      // description: "Complete Power BI training covering reports, dashboards, data modeling and cloud operations.",
+      image: "/images/courses/new/bipower.png",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       category: "Analytics",
-      features: ["100% Job Assistance", "Certificate: Yes"],
+      features: ["100% Job Assistance", "Certificate: Yes", "Basic to Advance level", "Online/Offline Mode"],
       courseHighlights: [
         "Introduction to Power BI",
         "Creating Power BI Reports / Auto Filter",
@@ -241,12 +241,12 @@ export const siteData = {
     {
       id: 3,
       name: "Data Science",
-      description: "Comprehensive data science program covering Python, machine learning, and big data fundamentals.",
+      // description: "Comprehensive data science program covering Python, machine learning, and big data fundamentals.",
       image: "/images/courses/datascience.jpg",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       category: "Data Science",
-      features: ["100% Job Assistance", "Certificate: Yes"],
+      features: ["100% Job Assistance", "Certificate: Yes", "Basic to Advance level", "Online/Offline Mode"],
       courseHighlights: [
         "Introduction to Data Science",
         "Statistics & Probablity",
@@ -271,12 +271,12 @@ export const siteData = {
     {
       id: 4,
       name: "Full Stack Python",
-      description: "Complete Python development course covering Django framework and web development fundamentals.",
+      // description: "Complete Python development course covering Django framework and web development fundamentals.",
       image: "/images/courses/python.jpg",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       category: "Programming",
-      features: ["100% Job Assistance", "Certificate: Yes"],
+      features: ["100% Job Assistance", "Certificate: Yes", "Basic to Advance level", "Online/Offline Mode"],
       courseHighlights: [
         "Core Python",
         "Advance Python",
@@ -299,12 +299,12 @@ export const siteData = {
     {
       id: 5,
       name: "Digital Marketing",
-      description: "Comprehensive digital marketing course covering SEO, social media marketing, and paid advertising strategies.",
+      // description: "Comprehensive digital marketing course covering SEO, social media marketing, and paid advertising strategies.",
       image: "/images/courses/digitalmarketing.jpg",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       category: "Marketing",
-      features: ["100% Job Assistance", "Certificate: Yes"],
+      features: ["100% Job Assistance", "Certificate: Yes", "Basic to Advance level", "Online/Offline Mode"],
       courseHighlights: [
         "Introduction to Digital Marketing",
         "Introduction to CRM",
@@ -328,12 +328,12 @@ export const siteData = {
     {
       id: 6,
       name: "Website Design & Development",
-      description: "Complete web design and development course covering HTML, CSS, JavaScript and responsive design principles.",
+      // description: "Complete web design and development course covering HTML, CSS, JavaScript and responsive design principles.",
       image: "/images/courses/webdevelopment.jpeg",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       category: "Web Development",
-      features: ["100% Job Assistance", "Certificate: Yes"],
+      features: ["100% Job Assistance", "Certificate: Yes", "Basic to Advance level", "Online/Offline Mode"],
       courseHighlights: [
         "Basics of Web Designing",
         "Web Technologies",
@@ -356,12 +356,12 @@ export const siteData = {
     {
       id: 7,
       name: "Automotive Plastic Trim Design",
-      description: "Specialized course in automotive plastic trim design covering CAD methodology and industrial projects.",
-      image: "/images/courses/automotive.png",
+      // description: "Specialized course in automotive plastic trim design covering CAD methodology and industrial projects.",
+      image: "/images/courses/new/plastictrim.jpeg",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       category: "Automotive Design",
-      features: ["100% Job Assistance", "Certificate: Yes"],
+      features: ["100% Job Assistance", "Certificate: Yes", "Basic to Advance level", "Online/Offline Mode"],
       courseHighlights: [
         "Benchmarking Study, Style Feasibility",
         "Plastic Design Considerations",
@@ -383,12 +383,12 @@ export const siteData = {
     {
       id: 8,
       name: "Automotive BIW Product Design",
-      description: "Body-in-White product design course covering BIW methodology, materials, and assembly design projects.",
-      image: "/images/courses/biwdesign.jpg",
+      // description: "Body-in-White product design course covering BIW methodology, materials, and assembly design projects.",
+      image: "/images/courses/new/biwproductdesign.jpeg",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       category: "Automotive Design",
-      features: ["100% Job Assistance", "Certificate: Yes"],
+      features: ["100% Job Assistance", "Certificate: Yes", "Basic to Advance level", "Online/Offline Mode"],
       courseHighlights: [
         "BIW Types & BIW Components",
         "BIW CAD Methodology for stamping parts",
@@ -411,12 +411,12 @@ export const siteData = {
     {
       id: 9,
       name: "Press Tool Design",
-      description: "Comprehensive press tool design course covering BIW methodology, CAE analysis, and placement preparation.",
-      image: "/images/courses/presstool.jpg",
+      // description: "Comprehensive press tool design course covering BIW methodology, CAE analysis, and placement preparation.",
+      image: "/images/courses/new/presstooldesign.webp",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       category: "Tool Design",
-      features: ["100% Job Assistance", "Certificate: Yes"],
+      features: ["100% Job Assistance", "Certificate: Yes", "Basic to Advance level", "Online/Offline Mode"],
       courseHighlights: [
         "BIW Types & BIW Components",
         "BIW CAD Methodology for stamping parts",
@@ -439,12 +439,12 @@ export const siteData = {
     {
       id: 10,
       name: "Reverse Engineering",
-      description: "Specialized reverse engineering course covering automotive body design, BIW methodology, and project-based learning.",
+      // description: "Specialized reverse engineering course covering automotive body design, BIW methodology, and project-based learning.",
       image: "/images/courses/reverseengineering.jpg",
       duration: "100 Hours / 3 Months",
       rating: "4.8",
       category: "Engineering",
-      features: ["100% Job Assistance", "Certificate: Yes"],
+      features: ["100% Job Assistance", "Certificate: Yes", "Basic to Advance level", "Online/Offline Mode"],
       courseHighlights: [
         "Automotive Body Basics",
         "BIW Product Design Cycle",
@@ -462,16 +462,15 @@ export const siteData = {
         "Internship Letter for Freshers"
       ]
     },
-    // NEW COURSES ADDED HERE
     {
       id: 11,
       name: "German Language",
-      description: "Comprehensive German language course covering grammar, conversation, reading, writing, and real-life interactions. Designed for beginners to intermediate learners, with a focus on both everyday communication and professional use.",
-      image: "/images/courses/german.png", // Update image path as needed
+      // description: "Comprehensive German language course covering grammar, conversation, reading, writing, and real-life interactions. Designed for beginners to intermediate learners, with a focus on both everyday communication and professional use.",
+      image: "/images/courses/german.png",
       duration: "100 Hours / 3 Months",
-      rating: "4.5", // Set as per your institute's standards
+      rating: "4.5",
       category: "Language",
-      features: ["Certificate: Yes", "Native Speaker Faculty", "Interactive Classes", "Placement Assistance"],
+      features: ["Certificate: Yes", "Native Speaker Faculty", "Interactive Classes", "Placement Assistance", "Basic to Advance level", "Online/Offline Mode"],
       courseHighlights: [
         "Introduction to German Alphabet & Pronunciation",
         "Basic Grammar & Sentence Structure",
@@ -488,12 +487,12 @@ export const siteData = {
     {
       id: 12,
       name: "Japanese Language",
-      description: "Comprehensive Japanese language course for beginners, focusing on speaking, reading, writing, and cultural understanding. Prepares students for JLPT (Japanese Language Proficiency Test) and enhances career prospects in Japan and Japanese firms.",
-      image: "/images/courses/japanese.jpg", // Update image path as needed
+      // description: "Comprehensive Japanese language course for beginners, focusing on speaking, reading, writing, and cultural understanding. Prepares students for JLPT (Japanese Language Proficiency Test) and enhances career prospects in Japan and Japanese firms.",
+      image: "/images/courses/new/japnese.jpg",
       duration: "100 Hours / 3 Months",
-      rating: "4.5", // Set as per your institute's standards
+      rating: "4.5",
       category: "Language",
-      features: ["Certificate: Yes", "Native Speaker Faculty", "Interactive Classes", "Placement Assistance"],
+      features: ["Certificate: Yes", "Native Speaker Faculty", "Interactive Classes", "Placement Assistance", "Basic to Advance level", "Online/Offline Mode"],
       courseHighlights: [
         "Japanese Characters: Hiragana, Katakana, Kanji",
         "Basic Grammar & Sentence Patterns",
