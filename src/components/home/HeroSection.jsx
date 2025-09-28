@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-
+  
   // Direct image paths from public/images/hero/ folder
   const heroSlides = [
     {
@@ -32,7 +32,7 @@ const HeroSection = () => {
   useEffect(() => {
     let loadedCount = 0;
     const totalImages = heroSlides.length;
-    
+        
     if (totalImages === 0) {
       setImagesLoaded(true);
       return;
@@ -59,14 +59,14 @@ const HeroSection = () => {
   // Auto slide functionality for both mobile and desktop
   useEffect(() => {
     if (!imagesLoaded || heroSlides.length <= 1) return;
-    
+        
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => {
         const nextIndex = (prevIndex + 1) % heroSlides.length;
         console.log('Auto sliding to index:', nextIndex); // Debug log
         return nextIndex;
       });
-    }, 4000); // Reduced to 4 seconds for more noticeable sliding
+    }, 4000); // 4 seconds for auto sliding
 
     return () => clearInterval(timer);
   }, [imagesLoaded]);
@@ -81,36 +81,38 @@ const HeroSection = () => {
   }
 
   return (
-    <section className="w-full relative">
+    <section className="w-full relative overflow-hidden">
       {/* HERO SLIDER - Mobile Only */}
-      <div className="block md:hidden w-full relative bg-white">
-        <div
-          className="flex transition-transform duration-700 ease-in-out"
-          style={{
-            width: `${heroSlides.length * 100}%`,
-            transform: `translateX(-${currentIndex * (100 / heroSlides.length)}%)`
-          }}
-        >
-          {heroSlides.map((slide, idx) => (
-            <div
-              key={slide.id || idx}
-              className="w-full flex-shrink-0 h-[190px] sm:h-[240px] relative"
-              style={{ width: `${100 / heroSlides.length}%` }}
-            >
-              <img
-                src={slide.image}
-                alt={`Hero ${idx + 1}`}
-                className={`w-full h-full object-contain bg-white transition-opacity duration-500 rounded-b-xl ${
-                  imagesLoaded ? 'opacity-100' : 'opacity-0'
-                }`}
-                style={{ display: 'block', margin: '0 auto' }}
-                loading="eager"
-                decoding="async"
-              />
-            </div>
-          ))}
+      <div className="block md:hidden w-full relative bg-white overflow-hidden">
+        {/* Slider Container */}
+        <div className="relative h-[190px] sm:h-[240px] w-full overflow-hidden rounded-b-xl">
+          <div
+            className="flex h-full transition-transform duration-700 ease-in-out"
+            style={{
+              width: `${heroSlides.length * 100}%`,
+              transform: `translateX(-${(currentIndex * 100) / heroSlides.length}%)`
+            }}
+          >
+            {heroSlides.map((slide, idx) => (
+              <div
+                key={slide.id || idx}
+                className="flex-none h-full bg-white flex items-center justify-center"
+                style={{ width: `${100 / heroSlides.length}%` }}
+              >
+                <img
+                  src={slide.image}
+                  alt={`Hero ${idx + 1}`}
+                  className={`max-w-full max-h-full object-contain transition-opacity duration-500 ${
+                    imagesLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
         </div>
-        
+                
         {/* Mobile Indicator Dots */}
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5 z-10">
           {heroSlides.map((_, idx) => (
@@ -124,33 +126,34 @@ const HeroSection = () => {
             />
           ))}
         </div>
-        
+                
+        {/* Mobile Loading State */}
         {!imagesLoaded && (
           <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-30">
             <div className="animate-spin rounded-full h-8 w-8 border-t-4 border-orange-300"></div>
           </div>
         )}
       </div>
-      
+            
       {/* DESKTOP HERO - Full Screen Auto Slider */}
       <div className="hidden md:block w-full h-screen relative overflow-hidden bg-gray-900">
         <div
           className="flex h-full transition-transform duration-1000 ease-in-out"
           style={{
             width: `${heroSlides.length * 100}%`,
-            transform: `translateX(-${currentIndex * (100 / heroSlides.length)}%)`
+            transform: `translateX(-${(currentIndex * 100) / heroSlides.length}%)`
           }}
         >
           {heroSlides.map((slide, idx) => (
             <div
               key={slide.id || `desktop-${idx}`}
-              className="flex-shrink-0 h-full relative"
+              className="flex-none h-full relative"
               style={{ width: `${100 / heroSlides.length}%` }}
             >
               <img
                 src={slide.image}
                 alt={`Hero Desktop ${idx + 1}`}
-                className={`w-full h-full transition-opacity duration-500 ${
+                className={`w-full h-full object-cover transition-opacity duration-500 ${
                   imagesLoaded ? 'opacity-100' : 'opacity-0'
                 }`}
                 loading="eager"
@@ -167,7 +170,7 @@ const HeroSection = () => {
             </div>
           ))}
         </div>
-        
+                
         {/* Desktop Navigation Arrows */}
         <button
           onClick={() => goToSlide((currentIndex - 1 + heroSlides.length) % heroSlides.length)}
@@ -178,7 +181,7 @@ const HeroSection = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        
+                
         <button
           onClick={() => goToSlide((currentIndex + 1) % heroSlides.length)}
           className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 z-10"
@@ -188,7 +191,7 @@ const HeroSection = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
-        
+                
         {/* Desktop Indicator Dots */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
           {heroSlides.map((_, idx) => (
@@ -202,7 +205,7 @@ const HeroSection = () => {
             />
           ))}
         </div>
-        
+                
         {/* Desktop Loading State */}
         {!imagesLoaded && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-30">
@@ -212,7 +215,7 @@ const HeroSection = () => {
             </div>
           </div>
         )}
-        
+                
         {/* Slide Counter */}
         <div className="absolute top-6 right-6 bg-black/30 text-white px-4 py-2 rounded-full text-sm z-10">
           {currentIndex + 1} / {heroSlides.length}
